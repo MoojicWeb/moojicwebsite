@@ -11,6 +11,13 @@ type AudioMetaEntry = {
 
 const meta = audioMeta as Record<string, AudioMetaEntry>;
 
+// Display-name overrides — highest priority. Use to clean up messy ID3 titles
+// (catalog codes, library prefixes, etc.) without re-tagging the source file.
+// Key: relative path from /assets/audio/, exactly as it appears in audio-meta.json.
+const titleOverrides: Record<string, string> = {
+  'cafe/Sophisticated/Anytime.mp3': 'Anytime',
+};
+
 export type StoreId =
   | 'cafe' | 'retail' | 'restaurant' | 'salon' | 'gym' | 'hotel'
   | 'cinema' | 'mall' | 'supermarket' | 'bookstore' | 'workspace' | 'automotive';
@@ -41,7 +48,7 @@ function parseTrack(folderPath: string, filename: string, id: number): Track {
 
   return {
     id,
-    title: tags?.title || fallbackTitle,
+    title: titleOverrides[key] || tags?.title || fallbackTitle,
     artist: tags?.artist || fallbackArtist,
     duration: tags?.duration || '—',
     file: `/assets/audio/${folderPath}/${encodeURIComponent(filename)}`,
