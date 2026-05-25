@@ -44,7 +44,7 @@ const moodOverlayColors: Record<string, string> = {
 export default function SamplePlayerPage() {
   const {
     storeType, brandMood, moodTag, sonicProfile, activeTrackIndex, isPlaying,
-    progress, volume, isShuffle, isRepeat, currentTrack,
+    progress, currentTime, duration, volume, isShuffle, isRepeat, currentTrack,
     moodOrderedTracks, selectStoreType, selectTrack, togglePlay, nextTrack,
     prevTrack, seek, setVolume, setBrandMood, toggleShuffle, toggleRepeat,
   } = useSamplePlayer();
@@ -64,8 +64,14 @@ export default function SamplePlayerPage() {
 
   const activeMood = brandMoods.find((m) => m.value === brandMood);
   const Icon = industryIcons[storeType] || Coffee;
-  const formatTime = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-  const curSec = Math.floor((progress / 100) * 240);
+  const formatTime = (s: number) => {
+    if (!Number.isFinite(s) || s < 0) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s) % 60;
+    return `${m}:${String(sec).padStart(2, '0')}`;
+  };
+  const curSec = Math.floor(currentTime);
+  const totalLabel = duration > 0 ? formatTime(duration) : '—';
 
   return (
     <div className="h-[calc(100vh-72px)] mt-[72px] bg-[#0a0a1a] flex flex-col text-white overflow-hidden">
@@ -298,7 +304,7 @@ export default function SamplePlayerPage() {
               <div className="flex-1 h-1 bg-white/10 rounded-full overflow-hidden cursor-pointer" onClick={(e) => { const r = e.currentTarget.getBoundingClientRect(); seek(((e.clientX - r.left) / r.width) * 100); }}>
                 <div className="h-full rounded-full bg-gradient-to-r from-[#e91e63] to-[#7c4dff] transition-all" style={{ width: `${progress}%` }} />
               </div>
-              <span className="text-[10px] text-white/30 w-8">4:00</span>
+              <span className="text-[10px] text-white/30 w-10">{totalLabel}</span>
             </div>
           </div>
 
