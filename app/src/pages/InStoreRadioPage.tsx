@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import HeroVideo from '@/components/HeroVideo';
 import {
   Music, Monitor, BarChart3, Cpu, Users, Headphones,
   Shuffle, Lock, RefreshCw, Bell, Check, ArrowRight,
@@ -29,9 +30,7 @@ function Hero() {
 
   return (
     <section ref={heroRef} className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-[#0a0a1a] mt-[72px]">
-      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-        <source src="/assets/instore-radio-hero.mp4" type="video/mp4" />
-      </video>
+      <HeroVideo src="/assets/instore-radio-hero.mp4" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/50 to-[#0a0a1a]/30" />
       {/* Mesh blobs */}
       <div className="absolute inset-0 pointer-events-none">
