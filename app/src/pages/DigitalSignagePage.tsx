@@ -288,7 +288,7 @@ export default function DigitalSignagePage() {
       const cards = fEl.querySelectorAll('.ds-feature');
       if (cards.length) {
         gsap.from(cards, {
-          y: 40, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out',
+          y: 20, duration: 0.5, stagger: 0.06, ease: 'power2.out',
           scrollTrigger: { trigger: fEl, start: 'top 85%', once: true },
         });
         // Scroll-triggered glow burst on mini screens
