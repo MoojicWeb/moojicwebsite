@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  Music, Monitor, BarChart3, Mic, Cpu, Users, Headphones,
-  Shuffle, Lock, RefreshCw, Bell, FileText, Check, ArrowRight,
+  Music, Monitor, BarChart3, Cpu, Users, Headphones,
+  Shuffle, Lock, RefreshCw, Bell, Check, ArrowRight,
   Play, Radio, Sparkles, Wifi, QrCode, Smartphone, Waves, Zap,
   Gamepad2, Shield,
 } from 'lucide-react';
@@ -288,7 +288,7 @@ function CapabilitiesSection() {
     return () => ctx.revert();
   }, []);
 
-  const renderCap = (cap: Capability, index: number, side: 'left' | 'right') => {
+  const renderCap = (cap: Capability, _index: number, side: 'left' | 'right') => {
     const isLeft = side === 'left';
     const itemClass = isLeft ? 'cap-left-item' : 'cap-right-item';
     return (
@@ -403,7 +403,7 @@ function WhyDifferentSection() {
 
         {/* Minimal editorial grid */}
         <div className="grid sm:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10">
-          {whyItems.map((item, i) => (
+          {whyItems.map((item) => (
             <div key={item.title} className="why-item flex items-start gap-5">
               {/* Large gradient number */}
               <span
