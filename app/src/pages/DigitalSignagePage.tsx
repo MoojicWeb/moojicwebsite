@@ -48,10 +48,10 @@ function Hero() {
           <span className="text-xs font-semibold text-[#7c4dff] uppercase tracking-wider">Digital Signage</span>
         </div>
         <h1 className="font-poppins font-extrabold text-white text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] mb-4">
-          Interactive Displays That <span className="gradient-text">Convert</span>
+          Turn Every Screen Into Your <span className="gradient-text">Best Salesperson.</span>
         </h1>
         <p className="text-white/45 text-sm sm:text-base max-w-[540px] mx-auto leading-relaxed mb-8">
-          Centrally controlled digital displays with smart scheduling, real-time CMS, and powerful integrations.
+          No more outdated posters. No more manual updates. Just the right content, on the right screen, at the right moment.
         </p>
         <div className="flex items-center justify-center gap-6">
           <div className="text-center">
