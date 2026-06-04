@@ -571,7 +571,7 @@ export default function DigitalSignagePage() {
         <div className="max-w-[1280px] mx-auto px-4 text-center relative z-10">
           <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl p-8 sm:p-12">
             <h2 className="font-poppins font-bold text-white text-[clamp(1.3rem,3vw,2rem)] mb-3">
-              Ready To Light Up <span className="gradient-text">Your Stores?</span>
+              Ready to Turn Screens <span className="gradient-text">Into Experiences?</span>
             </h2>
             <p className="text-white/35 text-sm max-w-[400px] mx-auto mb-6">
               Join thousands of brands using Moojic TV to transform their in-store experience.
