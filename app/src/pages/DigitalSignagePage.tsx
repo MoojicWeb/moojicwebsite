@@ -105,7 +105,7 @@ const features: FeatureData[] = [
   },
   {
     icon: FileText, title: 'Real-Time CMS', crux: 'Upload once. Deploy everywhere.',
-    desc: 'Unlimited videos, images, and media files. Auto-optimized for every screen size.',
+    desc: 'Upload any video, image, or media file and push it to every screen instantly. Automatically optimised for every display size.',
     color1: '#00bcd4', color2: '#7c4dff', eqBars: [30, 45, 25, 65, 35, 55, 40, 70, 20, 60, 45, 50],
     tags: [
       { label: 'Images', icon: Image },
