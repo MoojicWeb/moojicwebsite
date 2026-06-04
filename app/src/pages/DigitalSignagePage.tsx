@@ -574,7 +574,7 @@ export default function DigitalSignagePage() {
               Ready to Turn Screens <span className="gradient-text">Into Experiences?</span>
             </h2>
             <p className="text-white/35 text-sm max-w-[400px] mx-auto mb-6">
-              Join thousands of brands using Moojic TV to transform their in-store experience.
+              Join hundreds of brands using Moojic TV to transform their in-store experience.
             </p>
             <Link to="/contact" className="inline-flex items-center gap-2 font-poppins text-sm font-semibold uppercase tracking-[0.04em] text-white px-8 py-4 rounded-xl gradient-bg hover:shadow-[0_8px_30px_rgba(233,30,99,0.4)] transition-all">
               Get a Demo <ArrowRight className="w-4 h-4" />
