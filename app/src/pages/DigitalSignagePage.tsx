@@ -6,6 +6,7 @@ import {
   Monitor, Clock, FileText, BarChart3, Layout, Link2,
   Eye, Smile, TrendingUp, ArrowRight, Check, Play,
   Sparkles, Image, Video, Globe, Rss, Sun, Cloud,
+  Zap, Activity, MapPin,
 } from 'lucide-react';
 import VideoWallVisualizer from '@/components/VideoWallVisualizer';
 
@@ -240,6 +241,176 @@ function FeatureCard({ f, index }: { f: FeatureData; index: number }) {
   );
 }
 
+/* ========== DASHBOARD MOCKUP ========== */
+function DashboardMockup() {
+  return (
+    <div className="relative w-full max-w-[560px] mx-auto">
+      {/* Glow behind mockup */}
+      <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#7c4dff]/10 via-[#e91e63]/5 to-transparent blur-2xl pointer-events-none" />
+      {/* Dashboard frame */}
+      <div className="relative rounded-2xl border border-white/[0.08] bg-[#0d0d1e] shadow-2xl overflow-hidden">
+        {/* Top bar */}
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.05]">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          </div>
+          <div className="flex-1 flex justify-center">
+            <div className="px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.05] text-[10px] text-white/30 flex items-center gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full border border-white/20" />
+              dashboard.moojic.tv
+            </div>
+          </div>
+        </div>
+        {/* Body */}
+        <div className="flex">
+          {/* Sidebar */}
+          <div className="w-12 py-4 flex flex-col items-center gap-4 border-r border-white/[0.05]">
+            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#e91e63] to-[#7c4dff] flex items-center justify-center">
+              <Monitor className="w-3 h-3 text-white" />
+            </div>
+            {[1,2,3,4,5].map((i) => (
+              <div key={i} className="w-5 h-5 rounded bg-white/[0.04]" />
+            ))}
+          </div>
+          {/* Main */}
+          <div className="flex-1 p-4 space-y-3">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="h-2.5 w-24 rounded bg-white/10 mb-1.5" />
+                <div className="h-1.5 w-16 rounded bg-white/[0.06]" />
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#00bcd4] to-[#7c4dff]" />
+              </div>
+            </div>
+            {/* Stats row */}
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { label: 'Screens Online', val: '1,247', color: '#00bcd4' },
+                { label: 'Active Campaigns', val: '34', color: '#e91e63' },
+                { label: 'Stores Live', val: '89', color: '#7c4dff' },
+              ].map((s) => (
+                <div key={s.label} className="rounded-lg border border-white/[0.05] bg-white/[0.02] p-2.5">
+                  <div className="text-[9px] text-white/30 mb-1">{s.label}</div>
+                  <div className="text-sm font-bold text-white font-poppins">{s.val}</div>
+                  <div className="mt-1.5 h-1 rounded-full bg-white/[0.05] overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: '70%', background: s.color }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Screen grid */}
+            <div className="rounded-lg border border-white/[0.05] bg-white/[0.02] p-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className="h-2 w-20 rounded bg-white/10" />
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#28c840]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#28c840]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#febc2e]" />
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-2">
+                {[0,1,2,3].map((i) => (
+                  <div key={i} className="aspect-video rounded border border-white/[0.06] bg-[#0a0a1a] relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className={['w-full h-full', i === 0 ? 'bg-gradient-to-br from-[#e91e63]/20 to-[#7c4dff]/10' : i === 1 ? 'bg-gradient-to-br from-[#00bcd4]/15 to-transparent' : i === 2 ? 'bg-gradient-to-br from-[#ff9800]/15 to-transparent' : 'bg-gradient-to-br from-[#7c4dff]/15 to-transparent'].join(' ')} />
+                    </div>
+                    <div className="absolute bottom-1 left-1 flex items-center gap-1">
+                      <div className={['w-1 h-1 rounded-full', i === 2 ? 'bg-[#febc2e]' : 'bg-[#28c840]'].join(' ')} />
+                      <div className="h-0.5 w-3 rounded bg-white/20" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Schedule strip */}
+            <div className="rounded-lg border border-white/[0.05] bg-white/[0.02] p-3">
+              <div className="h-2 w-24 rounded bg-white/10 mb-2" />
+              <div className="flex gap-1.5">
+                {['Mon','Tue','Wed','Thu','Fri'].map((d, i) => (
+                  <div key={d} className="flex-1 rounded bg-white/[0.03] p-1.5 text-center">
+                    <div className="text-[8px] text-white/30 mb-1">{d}</div>
+                    <div className={['h-6 rounded', i === 2 ? 'bg-gradient-to-b from-[#e91e63]/30 to-[#ff9800]/20' : 'bg-white/[0.04]'].join(' ')} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ========== DASHBOARD SECTION ========== */
+const dashboardPoints = [
+  'Publish updates instantly',
+  'Schedule content by store, region, or campaign',
+  'Monitor screen health in real time',
+  'Manage thousands of screens centrally',
+  'Access reports and playback history',
+];
+
+const dashboardTags = [
+  { label: 'Instant Updates', icon: Zap },
+  { label: 'Smart Scheduling', icon: Clock },
+  { label: 'Centralized Control', icon: Monitor },
+  { label: 'Live Monitoring', icon: Activity },
+  { label: 'Advanced Reporting', icon: BarChart3 },
+  { label: 'Multi-Location', icon: MapPin },
+];
+
+function DashboardSection({ sectionRef }: { sectionRef: React.RefObject<HTMLDivElement | null> }) {
+  return (
+    <section ref={sectionRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124,77,255,0.05) 0%, transparent 70%)', filter: 'blur(80px)' }} />
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
+          {/* Text */}
+          <div className="lg:w-1/2">
+            <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Centralized Control</p>
+            <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2.2rem)] leading-tight mb-3">
+              One Dashboard. <span className="gradient-text">Unlimited Screens.</span>
+            </h2>
+            <p className="text-white/35 text-sm mb-6">
+              Instantly update, schedule, and monitor content across your entire network.
+            </p>
+            <ul className="space-y-3 mb-6">
+              {dashboardPoints.map((p) => (
+                <li key={p} className="flex items-start gap-3 text-white/50 text-sm">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-[#7c4dff]/10 border border-[#7c4dff]/20 flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 text-[#7c4dff]" />
+                  </span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <div className="dashboard-tags flex flex-wrap gap-2">
+              {dashboardTags.map((t) => {
+                const TIcon = t.icon;
+                return (
+                  <span key={t.label} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-[11px] text-white/50">
+                    <TIcon className="w-3 h-3" />
+                    {t.label}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          {/* Mockup */}
+          <div className="lg:w-1/2 dashboard-mockup">
+            <DashboardMockup />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ========== BENEFIT CARD ========== */
 const benefits = [
   { stat: '400', suffix: '%', title: 'More Attention', desc: 'Your customers are four times more likely to notice a digital screen than a static poster. That\'s four times more chances to sell.', icon: Eye, color1: '#e91e63', color2: '#ff9800' },
@@ -274,11 +445,13 @@ export default function DigitalSignagePage() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fEl = featuresRef.current;
     const bEl = benefitsRef.current;
     const oEl = overviewRef.current;
+    const dEl = dashboardRef.current;
 
     if (oEl) {
       const items = oEl.querySelectorAll('.overview-item');
@@ -309,8 +482,12 @@ export default function DigitalSignagePage() {
       const cards = bEl.querySelectorAll('.benefit-card');
       if (cards.length) gsap.from(cards, { y: 20, duration: 0.5, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: bEl, start: 'top 85%', once: true } });
     }
+    if (dEl) {
+      const items = dEl.querySelectorAll('.dashboard-mockup, ul li, .dashboard-tags > span');
+      if (items.length) gsap.from(items, { y: 20, duration: 0.5, stagger: 0.05, ease: 'power2.out', scrollTrigger: { trigger: dEl, start: 'top 85%', once: true } });
+    }
     return () => {
-      ScrollTrigger.getAll().forEach((t) => { if (t.trigger === fEl || t.trigger === bEl || t.trigger === oEl) t.kill(); });
+      ScrollTrigger.getAll().forEach((t) => { if (t.trigger === fEl || t.trigger === bEl || t.trigger === oEl || t.trigger === dEl) t.kill(); });
     };
   }, []);
 
@@ -365,6 +542,8 @@ export default function DigitalSignagePage() {
           </div>
         </div>
       </section>
+
+      <DashboardSection sectionRef={dashboardRef} />
 
       {/* Benefits */}
       <section ref={benefitsRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
