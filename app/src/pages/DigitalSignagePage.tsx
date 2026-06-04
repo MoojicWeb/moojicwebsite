@@ -326,22 +326,18 @@ export default function DigitalSignagePage() {
             <div className="lg:w-1/2">
               <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">About Moojic TV</p>
               <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2.2rem)] leading-tight mb-4">
-                Your Brand Story, <span className="gradient-text">On Every Screen</span>
+                The Power Of <span className="gradient-text">Digital Signage</span>
               </h2>
-              <div className="space-y-3">
-                {[
-                  'Centrally controlled digital display network',
-                  'Seamless interaction over audio, video & mobile',
-                  'Compelling atmosphere for any retail space',
-                  'Real-time content updates across all locations',
-                ].map((item) => (
-                  <div key={item} className="overview-item flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#7c4dff]/15 flex items-center justify-center shrink-0">
-                      <Check className="w-3 h-3 text-[#7c4dff]" />
-                    </div>
-                    <span className="text-white/50 text-sm">{item}</span>
-                  </div>
-                ))}
+              <div className="space-y-4 text-white/40 text-sm leading-relaxed">
+                <p>
+                  Walk into any great store and you&apos;ll notice it. The screens aren&apos;t just displaying content. They&apos;re telling a story, promoting an offer, and making you feel something. That&apos;s the power of digital signage done right.
+                </p>
+                <p>
+                  Moojic&apos;s interactive digital signage platform gives your brand complete control over every screen, in every store, from one place. Create content, schedule campaigns, and push real-time updates across hundreds of locations without making a single call or visiting a single store.
+                </p>
+                <p>
+                  Whether you&apos;re running a lunch promotion at a restaurant, a seasonal sale at a retail chain, or a brand campaign across a mall, your screens update instantly, look flawless, and always stay on brand.
+                </p>
               </div>
             </div>
             <div className="lg:w-1/2">
