@@ -135,7 +135,7 @@ const features: FeatureData[] = [
   },
   {
     icon: Link2, title: 'Integrations', crux: 'Connect everything.',
-    desc: 'Twitter, Instagram, YouTube, RSS, Live News, Sports, Weather, Canva, and more.',
+    desc: 'Plug in your social feeds, live news, sports updates, weather, Canva, and more. Your screens stay fresh & interactive always.',
     color1: '#e91e63', color2: '#7c4dff', eqBars: [45, 25, 60, 35, 75, 40, 55, 30, 70, 45, 50, 35],
     tags: [
       { label: 'Social', icon: Globe },
