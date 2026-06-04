@@ -84,8 +84,8 @@ interface FeatureData {
 
 const features: FeatureData[] = [
   {
-    icon: Monitor, title: 'Central Control', crux: 'One platform. Every screen.',
-    desc: 'Manage thousands of displays from a single dashboard. Design, publish, and update content in real-time.',
+    icon: Monitor, title: 'Central Control', crux: 'One dashboard. Total control.',
+    desc: 'Manage every screen across every location from one place. Design, publish, and update in real time. No store visits needed.',
     color1: '#7c4dff', color2: '#e91e63', eqBars: [20, 50, 35, 70, 45, 80, 30, 60, 40, 75, 25, 55],
     tags: [
       { label: 'Real-Time', icon: Globe },
