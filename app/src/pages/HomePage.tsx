@@ -736,6 +736,185 @@ function ServicesSection() {
   );
 }
 
+/* ============ MOOJIC ECOSYSTEM ============ */
+const ecosystemSteps = [
+  {
+    stage: 'ATTRACT',
+    service: 'In-Store Radio',
+    desc: 'Set the mood with curated background music that draws customers in and keeps them around.',
+    icon: Radio,
+    color1: '#e91e63',
+    color2: '#ff9800',
+  },
+  {
+    stage: 'INFORM',
+    service: 'Digital Signage',
+    desc: 'Turn every screen into a dynamic storyteller — promotions, menus, and brand visuals that captivate.',
+    icon: Monitor,
+    color1: '#7c4dff',
+    color2: '#00bcd4',
+  },
+  {
+    stage: 'ENGAGE',
+    service: 'Interactive Games',
+    desc: 'Gamify the visit with quizzes, spin-to-wins, and contests that turn passive visitors into active players.',
+    icon: Trophy,
+    color1: '#ff9800',
+    color2: '#e91e63',
+  },
+  {
+    stage: 'PARTICIPATE',
+    service: 'Digital Jukebox',
+    desc: 'Let customers pick the soundtrack from their phones. Engagement they control, memories they keep.',
+    icon: Smartphone,
+    color1: '#00bcd4',
+    color2: '#7c4dff',
+  },
+  {
+    stage: 'POWER',
+    service: 'AV Hardware',
+    desc: 'Crystal-clear speakers, displays, and amplifiers that deliver every beat and pixel with precision.',
+    icon: Speaker,
+    color1: '#e91e63',
+    color2: '#7c4dff',
+  },
+];
+
+function EcosystemSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      const steps = el.querySelectorAll('.eco-step');
+      gsap.from(steps, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.18,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 80%', once: true },
+      });
+      const connectors = el.querySelectorAll('.eco-connector');
+      gsap.from(connectors, {
+        scaleY: 0,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.18,
+        ease: 'power2.out',
+        transformOrigin: 'top center',
+        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
+      });
+      const pulses = el.querySelectorAll('.eco-pulse');
+      gsap.from(pulses, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.18,
+        ease: 'back.out(2)',
+        scrollTrigger: { trigger: el, start: 'top 70%', once: true },
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-20 relative overflow-hidden bg-[#0a0a1a]">
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(124,77,255,0.05) 0%, rgba(233,30,99,0.03) 40%, transparent 70%)', filter: 'blur(80px)' }}
+      />
+
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#7c4dff]/10 border border-[#7c4dff]/20 mb-5">
+            <Cpu className="w-4 h-4 text-[#7c4dff]" />
+            <span className="text-xs font-semibold text-[#7c4dff] uppercase tracking-[0.15em]">The Moojic Ecosystem</span>
+          </div>
+          <h2 className="font-poppins font-bold text-white text-[clamp(2rem,4vw,3.2rem)] leading-tight mb-4">
+            More Powerful When <span className="gradient-text">Connected</span>
+          </h2>
+          <p className="text-white/40 text-base max-w-[640px] mx-auto">
+            Power music, screens, engagement, and hardware from a single platform to create a unified in-store experience.
+          </p>
+        </div>
+
+        {/* Vertical Flow */}
+        <div className="relative">
+          {/* Central spine line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#e91e63]/30 via-[#7c4dff]/30 to-[#00bcd4]/30" />
+            <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[#e91e63]/60 to-transparent" style={{ animation: 'travel-down 3s linear infinite' }} />
+          </div>
+
+          {ecosystemSteps.map((step, i) => {
+            const StepIcon = step.icon;
+            const isLeft = i % 2 === 0;
+            return (
+              <div key={step.stage} className="eco-step relative mb-0">
+                {/* Connector line for mobile */}
+                {i < ecosystemSteps.length - 1 && (
+                  <div className="eco-connector md:hidden flex justify-center py-2">
+                    <div className="w-[2px] h-10 bg-gradient-to-b from-white/10 to-white/5" />
+                  </div>
+                )}
+
+                <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                  {/* Card */}
+                  <div className={`w-full md:w-5/12 ${isLeft ? 'md:text-right' : 'md:text-left'}`}>
+                    <div className="group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-6 transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(124,77,255,0.08)]">
+                      {/* Top gradient line */}
+                      <div className="absolute top-0 left-4 right-4 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `linear-gradient(90deg, ${step.color1}, ${step.color2})` }} />
+
+                      <div className={`flex items-center gap-4 mb-3 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-lg transition-transform duration-500 group-hover:scale-110"
+                          style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
+                        >
+                          <StepIcon className="w-6 h-6 text-white" />
+                        </div>
+                        <div className={isLeft ? 'md:text-right' : 'md:text-left'}>
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: step.color1 }}>{step.stage}</span>
+                          <h3 className="font-poppins font-semibold text-white text-lg">{step.service}</h3>
+                        </div>
+                      </div>
+                      <p className="text-white/40 text-sm leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+
+                  {/* Center node */}
+                  <div className="eco-pulse relative flex items-center justify-center shrink-0 hidden md:flex">
+                    <div className="w-10 h-10 rounded-full border-2 flex items-center justify-center" style={{ borderColor: step.color1, background: `${step.color1}15` }}>
+                      <span className="font-poppins font-bold text-sm" style={{ color: step.color1 }}>{String(i + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ background: step.color1, animationDuration: '2s' }} />
+                  </div>
+
+                  {/* Spacer for alternating layout */}
+                  <div className="hidden md:block md:w-5/12" />
+                </div>
+
+                {/* Connector for desktop */}
+                {i < ecosystemSteps.length - 1 && (
+                  <div className="eco-connector hidden md:flex justify-center py-4">
+                    <div className="relative w-[2px] h-12 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/5" />
+                      <div className="absolute top-0 left-0 w-full h-4 rounded-full" style={{ background: step.color1, animation: 'travel-down 2.5s linear infinite', animationDelay: `${i * 0.3}s` }} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============ INTERACTIVE EXPERIENCES ============ */
 function InteractiveExperiencesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -1781,6 +1960,7 @@ export default function HomePage() {
       />
       <HeroSection />
       <ServicesSection />
+      <EcosystemSection />
       <InteractiveExperiencesSection />
       <AIMusicCurationSection />
       <AboutSection />
