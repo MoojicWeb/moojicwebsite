@@ -242,9 +242,9 @@ function FeatureCard({ f, index }: { f: FeatureData; index: number }) {
 
 /* ========== BENEFIT CARD ========== */
 const benefits = [
-  { stat: '400', suffix: '%', title: 'More Attention', desc: 'Digital displays capture 400% more attention than static channels.', icon: Eye, color1: '#e91e63', color2: '#ff9800' },
-  { stat: '46', suffix: '%', title: 'Higher Satisfaction', desc: 'Customers report 46% higher satisfaction with digital displays.', icon: Smile, color1: '#7c4dff', color2: '#e91e63' },
-  { stat: '33', suffix: '%', title: 'Sales Increase', desc: 'Brands see a 33% average sales lift after implementing digital displays.', icon: TrendingUp, color1: '#00bcd4', color2: '#7c4dff' },
+  { stat: '400', suffix: '%', title: 'More Attention', desc: 'Your customers are four times more likely to notice a digital screen than a static poster. That\'s four times more chances to sell.', icon: Eye, color1: '#e91e63', color2: '#ff9800' },
+  { stat: '46', suffix: '%', title: 'Higher Satisfaction', desc: 'Customers who interact with digital displays report nearly half again more satisfaction and happier customers stay longer and spend more.', icon: Smile, color1: '#7c4dff', color2: '#e91e63' },
+  { stat: '33', suffix: '%', title: 'Sales Increase', desc: 'On average, brands see a 33% jump in sales after switching to digital displays. Your screens aren\'t a cost. They\'re an investment.', icon: TrendingUp, color1: '#00bcd4', color2: '#7c4dff' },
 ];
 
 function BenefitCard({ b, index }: { b: typeof benefits[0]; index: number }) {
@@ -376,7 +376,7 @@ export default function DigitalSignagePage() {
             <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] mb-2">
               Benefits of <span className="gradient-text">Moojic TV</span>
             </h2>
-            <p className="text-white/35 text-xs max-w-[400px] mx-auto">Your screens are a window to your brand story.</p>
+            <p className="text-white/35 text-xs max-w-[400px] mx-auto">The Numbers Don\'t Lie</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {benefits.map((b, i) => (
