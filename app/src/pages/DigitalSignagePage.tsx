@@ -114,8 +114,8 @@ const features: FeatureData[] = [
     ],
   },
   {
-    icon: BarChart3, title: 'Easy Monitoring', crux: 'Know every screen\'s status.',
-    desc: 'Track display health, online/offline status, sync progress, and last-seen timestamps.',
+    icon: BarChart3, title: 'Easy Monitoring', crux: 'Nothing goes unnoticed.',
+    desc: 'Track every screen\'s health, sync status, and last-seen activity in real time, so you always know what\'s playing where.',
     color1: '#ff9800', color2: '#ffb74d', eqBars: [40, 30, 55, 45, 70, 35, 50, 60, 25, 65, 40, 55],
     tags: [
       { label: 'Live Status', icon: Globe },
