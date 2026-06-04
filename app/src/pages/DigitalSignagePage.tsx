@@ -95,7 +95,7 @@ const features: FeatureData[] = [
   },
   {
     icon: Clock, title: 'Smart Scheduling', crux: 'Set it. Forget it.',
-    desc: 'Drag-and-drop scheduling for store-specific campaigns. Content starts and stops automatically.',
+    desc: 'Schedule store-specific campaigns with a simple drag and drop. Your content goes live and expires exactly when you want.',
     color1: '#e91e63', color2: '#ff9800', eqBars: [35, 20, 60, 40, 75, 30, 55, 45, 65, 28, 50, 38],
     tags: [
       { label: 'Auto-Start', icon: Play },
