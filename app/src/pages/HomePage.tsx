@@ -1960,10 +1960,10 @@ export default function HomePage() {
       />
       <HeroSection />
       <ServicesSection />
-      <EcosystemSection />
       <InteractiveExperiencesSection />
       <AIMusicCurationSection />
       <AboutSection />
+      <EcosystemSection />
       <WhyMoojicSection />
       <IndustriesSection />
       <StatsSection />
