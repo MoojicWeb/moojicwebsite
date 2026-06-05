@@ -788,8 +788,17 @@ function EcosystemSection() {
     const el = sectionRef.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      const cards = el.querySelectorAll('.eco-card');
-      gsap.from(cards, {
+      const cardsD = el.querySelectorAll('.eco-card-d');
+      gsap.from(cardsD, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 80%', once: true },
+      });
+      const cardsM = el.querySelectorAll('.eco-card-m');
+      gsap.from(cardsM, {
         y: 30,
         opacity: 0,
         duration: 0.6,
@@ -818,13 +827,7 @@ function EcosystemSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 relative overflow-hidden bg-[#0a0a1a]">
-      {/* Ambient glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(124,77,255,0.06) 0%, rgba(233,30,99,0.03) 50%, transparent 70%)', filter: 'blur(80px)' }}
-      />
-
+    <section ref={sectionRef} className="py-20 relative bg-[#0a0a1a]">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
@@ -840,57 +843,36 @@ function EcosystemSection() {
           </p>
         </div>
 
-        {/* Horizontal Pipeline - Desktop */}
-        <div className="hidden lg:grid grid-cols-5 gap-3 relative">
+        {/* Desktop Pipeline */}
+        <div className="hidden lg:flex items-start justify-center gap-3">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
             const isActive = activeIdx === i;
+            const isLast = i === ecosystemSteps.length - 1;
             return (
-              <div key={step.stage} className="relative">
-                {/* Card */}
+              <div key={step.stage} className="flex items-center gap-3">
                 <div
-                  className="eco-card group relative rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl h-full flex flex-col justify-center"
+                  className="eco-card-d group relative w-[190px] rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer"
                   style={{
-                    borderColor: isActive ? `${step.color1}60` : 'rgba(255,255,255,0.12)',
-                    boxShadow: isActive ? `0 0 40px ${step.color1}20` : '0 4px 20px rgba(0,0,0,0.4)',
+                    borderColor: isActive ? `${step.color1}60` : 'rgba(255,255,255,0.15)',
+                    boxShadow: isActive ? `0 0 30px ${step.color1}20, 0 4px 20px rgba(0,0,0,0.5)` : '0 4px 20px rgba(0,0,0,0.5)',
                   }}
                   onMouseEnter={() => setActiveIdx(i)}
                 >
-                  {/* Glow ring */}
-                  <div
-                    className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: `linear-gradient(135deg, ${step.color1}30, ${step.color2}20)`, filter: 'blur(8px)' }}
-                  />
-                  {/* Icon */}
                   <div
                     className="relative w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-2.5 shadow-lg transition-transform duration-500 group-hover:scale-110"
                     style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
                   >
                     <StepIcon className="w-6 h-6 text-white" />
                   </div>
-                  {/* Stage */}
                   <span className="block text-[10px] font-bold uppercase tracking-[0.2em] mb-1" style={{ color: step.color1 }}>{step.stage}</span>
-                  {/* Service */}
-                  <h3 className="font-poppins font-semibold text-white text-sm mb-2">{step.service}</h3>
-                  {/* Description - expands on hover */}
-                  <p className="text-white/35 text-xs leading-relaxed max-h-0 overflow-hidden group-hover:max-h-20 transition-all duration-500">
-                    {step.desc}
-                  </p>
+                  <h3 className="font-poppins font-semibold text-white text-sm">{step.service}</h3>
                 </div>
-
-                {/* Arrow connector */}
-                {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-arrow absolute top-1/2 -right-1.5 translate-x-1/2 -translate-y-1/2 w-6 h-[2px] z-10">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/10" />
-                    <div
-                      className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0"
-                      style={{ borderTop: '4px solid transparent', borderBottom: '4px solid transparent', borderLeft: `5px solid ${step.color1}60` }}
-                    />
-                    {/* Traveling dot */}
-                    <div
-                      className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
-                      style={{ background: step.color1, animation: 'travel-right 2s linear infinite', animationDelay: `${i * 0.3}s` }}
-                    />
+                {!isLast && (
+                  <div className="eco-arrow relative w-6 h-[2px] flex-shrink-0 mt-8">
+                    <div className="absolute inset-0 bg-white/15" />
+                    <div className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0" style={{ borderTop: '3px solid transparent', borderBottom: '3px solid transparent', borderLeft: `4px solid ${step.color1}80` }} />
+                    <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full" style={{ background: step.color1, animation: 'travel-right 2s linear infinite', animationDelay: `${i * 0.3}s` }} />
                   </div>
                 )}
               </div>
@@ -898,34 +880,34 @@ function EcosystemSection() {
           })}
         </div>
 
-        {/* Mobile / Tablet Grid */}
+        {/* Mobile Grid */}
         <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-4">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
             return (
               <div
                 key={step.stage}
-                className="eco-card group relative rounded-2xl border bg-[#12121e] p-5 text-center transition-all duration-500 shadow-xl"
+                className="eco-card-m group relative rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500"
                 style={{
-                  borderColor: activeIdx === i ? `${step.color1}60` : 'rgba(255,255,255,0.12)',
-                  boxShadow: activeIdx === i ? `0 0 40px ${step.color1}20` : '0 4px 20px rgba(0,0,0,0.4)',
+                  borderColor: activeIdx === i ? `${step.color1}60` : 'rgba(255,255,255,0.15)',
+                  boxShadow: activeIdx === i ? `0 0 30px ${step.color1}20, 0 4px 20px rgba(0,0,0,0.5)` : '0 4px 20px rgba(0,0,0,0.5)',
                 }}
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg transition-transform duration-500 group-hover:scale-110"
+                  className="w-11 h-11 rounded-lg flex items-center justify-center mx-auto mb-2.5 shadow-lg transition-transform duration-500 group-hover:scale-110"
                   style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
                 >
-                  <StepIcon className="w-6 h-6 text-white" />
+                  <StepIcon className="w-5 h-5 text-white" />
                 </div>
-                <span className="block text-[9px] font-bold uppercase tracking-[0.15em] mb-1" style={{ color: step.color1 }}>{step.stage}</span>
+                <span className="block text-[9px] font-bold uppercase tracking-[0.15em] mb-0.5" style={{ color: step.color1 }}>{step.stage}</span>
                 <h3 className="font-poppins font-semibold text-white text-sm">{step.service}</h3>
-                <p className="text-white/35 text-xs leading-relaxed mt-2 line-clamp-3">{step.desc}</p>
+                <p className="text-white/40 text-xs leading-relaxed mt-1.5">{step.desc}</p>
               </div>
             );
           })}
         </div>
 
-        {/* Progress indicator */}
+        {/* Progress dots */}
         <div className="flex justify-center gap-2 mt-10">
           {ecosystemSteps.map((step, i) => (
             <button
@@ -933,7 +915,7 @@ function EcosystemSection() {
               onClick={() => setActiveIdx(i)}
               className="w-2 h-2 rounded-full transition-all duration-300"
               style={{
-                background: activeIdx === i ? step.color1 : 'rgba(255,255,255,0.15)',
+                background: activeIdx === i ? step.color1 : 'rgba(255,255,255,0.2)',
                 transform: activeIdx === i ? 'scale(1.3)' : 'scale(1)',
               }}
             />
