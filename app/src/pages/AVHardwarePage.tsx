@@ -116,7 +116,7 @@ function Overview() {
   );
 }
 
-/* ========== AUDIO CARD ========== */
+/* ========== AUDIO ITEMS ========== */
 interface AudioItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string }
 
 const audioItems: AudioItem[] = [
@@ -126,49 +126,7 @@ const audioItems: AudioItem[] = [
   { icon: Mic, title: 'PA Systems', desc: 'Integrated public address for announcements, emergencies & voiceovers.', color1: '#ff9800', color2: '#ffb74d' },
 ];
 
-function AudioCard({ item, index }: { item: AudioItem; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${(e.clientX - rect.left) / rect.width}`);
-    el.style.setProperty('--my', `${(e.clientY - rect.top) / rect.height}`);
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className="av-card group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-all duration-500"
-      style={{ borderColor: hovered ? `${item.color1}30` : 'rgba(255,255,255,0.06)', transitionDelay: `${index * 40}ms` }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div
-        className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `radial-gradient(400px circle at calc(var(--mx,0.5)*100%) calc(var(--my,0.5)*100%), ${item.color1}10, transparent 40%)` }}
-      />
-      <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: `linear-gradient(90deg, ${item.color1}, ${item.color2})`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.5s' }} />
-
-      <div className="relative p-5">
-        <div className="flex items-start gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg" style={{ background: `linear-gradient(135deg, ${item.color1}, ${item.color2})` }}>
-            <item.icon className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <h3 className="font-poppins font-semibold text-sm text-white">{item.title}</h3>
-            <p className="text-white/40 text-xs leading-relaxed mt-1">{item.desc}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========== DISPLAY CARD ========== */
+/* ========== DISPLAY ITEMS ========== */
 interface DisplayItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string }
 
 const displayItems: DisplayItem[] = [
@@ -177,48 +135,6 @@ const displayItems: DisplayItem[] = [
   { icon: MousePointer, title: 'Interactive Kiosks', desc: 'Touch-enabled displays for wayfinding, browsing, and self-checkout.', color1: '#00bcd4', color2: '#7c4dff' },
   { icon: FileText, title: 'Digital Menu Boards', desc: 'Purpose-built for restaurants & QSRs with dayparting and easy updates.', color1: '#ff9800', color2: '#e91e63' },
 ];
-
-function DisplayCard({ item, index }: { item: DisplayItem; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${(e.clientX - rect.left) / rect.width}`);
-    el.style.setProperty('--my', `${(e.clientY - rect.top) / rect.height}`);
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className="av-card group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl overflow-hidden transition-all duration-500"
-      style={{ borderColor: hovered ? `${item.color1}30` : 'rgba(255,255,255,0.06)', transitionDelay: `${index * 40}ms` }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div
-        className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `radial-gradient(400px circle at calc(var(--mx,0.5)*100%) calc(var(--my,0.5)*100%), ${item.color1}10, transparent 40%)` }}
-      />
-      <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: `linear-gradient(90deg, ${item.color1}, ${item.color2})`, opacity: hovered ? 1 : 0.3, transition: 'opacity 0.5s' }} />
-
-      <div className="relative p-5">
-        <div className="flex items-start gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg" style={{ background: `linear-gradient(135deg, ${item.color1}, ${item.color2})` }}>
-            <item.icon className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <h3 className="font-poppins font-semibold text-sm text-white">{item.title}</h3>
-            <p className="text-white/40 text-xs leading-relaxed mt-1">{item.desc}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ========== PROCESS CARD ========== */
 const processSteps = [
@@ -273,21 +189,35 @@ export default function AVHardwarePage() {
       {/* Audio Solutions */}
       <section ref={audioRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124,77,255,0.05), transparent)', filter: 'blur(60px)' }} />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-10">
-            <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Sound Excellence</p>
-            <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] mb-2">
-              Audio <span className="gradient-text">Hardware</span> Solutions
-            </h2>
-            <p className="text-white/35 text-xs max-w-[400px] mx-auto">
-              Right speakers, right positions, right sound pressure levels — measured and calibrated.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {audioItems.map((item, i) => (
-              <AudioCard key={item.title} item={item} index={i} />
-            ))}
+          <div className="flex flex-col lg:flex-row gap-10 items-center">
+            <div className="lg:w-1/2">
+              <img src="/assets/service_hardware.jpg" alt="Audio Hardware" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
+            </div>
+            <div className="lg:w-1/2">
+              <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Sound Excellence</p>
+              <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-4">
+                Audio <span className="gradient-text">Hardware</span> Solutions
+              </h2>
+              <p className="text-white/40 text-sm leading-relaxed mb-6">
+                Right speakers, right positions, right sound pressure levels measured and calibrated for your space.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {audioItems.map((item) => (
+                  <div key={item.title} className="av-card group relative rounded-xl border bg-[#12121e] p-4 transition-all duration-500" style={{ borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-lg" style={{ background: `linear-gradient(135deg, ${item.color1}, ${item.color2})` }}>
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-poppins font-semibold text-sm text-white">{item.title}</h4>
+                        <p className="text-white/40 text-xs leading-relaxed mt-0.5">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -295,21 +225,35 @@ export default function AVHardwarePage() {
       {/* Display Solutions */}
       <section ref={displayRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(233,30,99,0.04) 0%, rgba(124,77,255,0.03) 50%, transparent 70%)', filter: 'blur(60px)' }} />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-10">
-            <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
-            <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] mb-2">
-              Commercial Grade <span className="gradient-text">Displays</span>
-            </h2>
-            <p className="text-white/35 text-xs max-w-[400px] mx-auto">
-              High-quality displays that create brand awareness and drive sales.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayItems.map((item, i) => (
-              <DisplayCard key={item.title} item={item} index={i} />
-            ))}
+          <div className="flex flex-col lg:flex-row-reverse gap-10 items-center">
+            <div className="lg:w-1/2">
+              <img src="/assets/service_signage.jpg" alt="Commercial Displays" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
+            </div>
+            <div className="lg:w-1/2">
+              <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
+              <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-4">
+                Commercial Grade <span className="gradient-text">Displays</span>
+              </h2>
+              <p className="text-white/40 text-sm leading-relaxed mb-6">
+                High-quality displays that create brand awareness, engage customers, and drive sales.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {displayItems.map((item) => (
+                  <div key={item.title} className="av-card group relative rounded-xl border bg-[#12121e] p-4 transition-all duration-500" style={{ borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-lg" style={{ background: `linear-gradient(135deg, ${item.color1}, ${item.color2})` }}>
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-poppins font-semibold text-sm text-white">{item.title}</h4>
+                        <p className="text-white/40 text-xs leading-relaxed mt-0.5">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
