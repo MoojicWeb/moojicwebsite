@@ -848,7 +848,7 @@ function EcosystemSection() {
             const isActive = activeIdx === i;
             const isLast = i === ecosystemSteps.length - 1;
             return (
-              <div key={step.stage} className="flex items-stretch gap-3">
+              <div key={step.stage} className="flex items-center gap-3">
                 <div
                   className="eco-card-d group relative w-[190px] rounded-xl border bg-[#151528] p-4 text-center transition-all duration-500 cursor-pointer h-full flex flex-col justify-center"
                   style={{
@@ -867,7 +867,7 @@ function EcosystemSection() {
                   <h3 className="font-poppins font-semibold text-white text-sm">{step.service}</h3>
                 </div>
                 {!isLast && (
-                  <div className="eco-arrow relative w-6 h-[2px] flex-shrink-0 mt-8 overflow-hidden rounded-full">
+                  <div className="eco-arrow relative w-6 h-[2px] flex-shrink-0 overflow-hidden rounded-full">
                     <div className="absolute inset-0 bg-white/15" />
                     <div
                       className="absolute inset-0 w-full"
