@@ -121,7 +121,7 @@ interface AudioItem { icon: React.ElementType; title: string; desc: string; colo
 
 const audioItems: AudioItem[] = [
   { icon: Speaker, title: 'Ceiling Speakers', desc: 'Discrete, high-quality overhead speakers for even sound distribution.', color1: '#7c4dff', color2: '#e91e63', eqBars: [20, 50, 35, 70, 45, 80, 30, 60, 40, 75] },
-  { icon: Volume2, title: 'Wall-Mounted Speakers', desc: 'Directional systems for targeted audio zones — entrances, queues, promos.', color1: '#e91e63', color2: '#ff9800', eqBars: [35, 20, 60, 40, 75, 30, 55, 45, 65, 28] },
+  { icon: Volume2, title: 'Wall-Mounted Speakers', desc: 'Directional systems for targeted audio zones. Entrances, queues, promos.', color1: '#e91e63', color2: '#ff9800', eqBars: [35, 20, 60, 40, 75, 30, 55, 45, 65, 28] },
   { icon: Zap, title: 'Professional Amplifiers', desc: 'Commercial-grade amps delivering consistent audio across multiple zones.', color1: '#00bcd4', color2: '#7c4dff', eqBars: [30, 45, 25, 65, 35, 55, 40, 70, 20, 60] },
   { icon: Mic, title: 'PA Systems', desc: 'Integrated public address for announcements, emergencies & voiceovers.', color1: '#ff9800', color2: '#ffb74d', eqBars: [40, 30, 55, 45, 70, 35, 50, 60, 25, 65] },
 ];
