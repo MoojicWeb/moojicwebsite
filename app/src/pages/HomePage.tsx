@@ -849,7 +849,7 @@ function EcosystemSection() {
               <div key={step.stage} className="flex items-center">
                 {/* Card */}
                 <div
-                  className="eco-card group relative w-[200px] rounded-2xl border border-white/[0.08] bg-[#12121e] p-5 text-center transition-all duration-500 cursor-pointer shadow-xl"
+                  className="eco-card group relative w-[170px] rounded-xl border border-white/[0.08] bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
                   style={{
                     borderColor: isActive ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
                     boxShadow: isActive ? `0 0 40px ${step.color1}15` : 'none',
@@ -863,10 +863,10 @@ function EcosystemSection() {
                   />
                   {/* Icon */}
                   <div
-                    className="relative w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg transition-transform duration-500 group-hover:scale-110"
+                    className="relative w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-2.5 shadow-lg transition-transform duration-500 group-hover:scale-110"
                     style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
                   >
-                    <StepIcon className="w-7 h-7 text-white" />
+                    <StepIcon className="w-6 h-6 text-white" />
                   </div>
                   {/* Stage */}
                   <span className="block text-[10px] font-bold uppercase tracking-[0.2em] mb-1" style={{ color: step.color1 }}>{step.stage}</span>
@@ -880,7 +880,7 @@ function EcosystemSection() {
 
                 {/* Arrow connector */}
                 {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-arrow relative w-10 h-[2px] mx-1 flex-shrink-0">
+                  <div className="eco-arrow relative w-6 h-[2px] mx-1 flex-shrink-0">
                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/10" />
                     <div
                       className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0"
