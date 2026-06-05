@@ -228,7 +228,7 @@ export default function AVHardwarePage() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row-reverse gap-10 items-center">
             <div className="lg:w-1/2">
-              <img src="/assets/service_signage.jpg" alt="Commercial Displays" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
+              <img src="/assets/industry_retail.jpg" alt="Commercial Displays" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
             </div>
             <div className="lg:w-1/2">
               <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
