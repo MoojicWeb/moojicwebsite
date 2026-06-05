@@ -782,54 +782,52 @@ const ecosystemSteps = [
 
 function EcosystemSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      const steps = el.querySelectorAll('.eco-step');
-      gsap.from(steps, {
-        y: 40,
+      const cards = el.querySelectorAll('.eco-card');
+      gsap.from(cards, {
+        y: 30,
         opacity: 0,
-        duration: 0.7,
-        stagger: 0.18,
+        duration: 0.6,
+        stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 80%', once: true },
       });
-      const connectors = el.querySelectorAll('.eco-connector');
-      gsap.from(connectors, {
-        scaleY: 0,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.18,
-        ease: 'power2.out',
-        transformOrigin: 'top center',
-        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
-      });
-      const pulses = el.querySelectorAll('.eco-pulse');
-      gsap.from(pulses, {
-        scale: 0,
+      const arrows = el.querySelectorAll('.eco-arrow');
+      gsap.from(arrows, {
+        scaleX: 0,
         opacity: 0,
         duration: 0.4,
-        stagger: 0.18,
-        ease: 'back.out(2)',
-        scrollTrigger: { trigger: el, start: 'top 70%', once: true },
+        stagger: 0.1,
+        ease: 'power2.out',
+        transformOrigin: 'left center',
+        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
       });
     }, el);
     return () => ctx.revert();
+  }, []);
+
+  // Auto-cycle active highlight
+  useEffect(() => {
+    const interval = setInterval(() => setActiveIdx((i) => (i + 1) % ecosystemSteps.length), 2500);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden bg-[#0a0a1a]">
       {/* Ambient glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(124,77,255,0.05) 0%, rgba(233,30,99,0.03) 40%, transparent 70%)', filter: 'blur(80px)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(124,77,255,0.06) 0%, rgba(233,30,99,0.03) 50%, transparent 70%)', filter: 'blur(80px)' }}
       />
 
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#7c4dff]/10 border border-[#7c4dff]/20 mb-5">
             <Cpu className="w-4 h-4 text-[#7c4dff]" />
             <span className="text-xs font-semibold text-[#7c4dff] uppercase tracking-[0.15em]">The Moojic Ecosystem</span>
@@ -842,73 +840,103 @@ function EcosystemSection() {
           </p>
         </div>
 
-        {/* Vertical Flow */}
-        <div className="relative">
-          {/* Central spine line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 hidden md:block">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#e91e63]/30 via-[#7c4dff]/30 to-[#00bcd4]/30" />
-            <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[#e91e63]/60 to-transparent" style={{ animation: 'travel-down 3s linear infinite' }} />
-          </div>
-
+        {/* Horizontal Pipeline - Desktop */}
+        <div className="hidden lg:flex items-stretch justify-center gap-0">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
-            const isLeft = i % 2 === 0;
+            const isActive = activeIdx === i;
             return (
-              <div key={step.stage} className="eco-step relative mb-0">
-                {/* Connector line for mobile */}
-                {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-connector md:hidden flex justify-center py-2">
-                    <div className="w-[2px] h-10 bg-gradient-to-b from-white/10 to-white/5" />
+              <div key={step.stage} className="flex items-center">
+                {/* Card */}
+                <div
+                  className="eco-card group relative w-[200px] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-5 text-center transition-all duration-500 cursor-pointer"
+                  style={{
+                    borderColor: isActive ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
+                    boxShadow: isActive ? `0 0 40px ${step.color1}15` : 'none',
+                  }}
+                  onMouseEnter={() => setActiveIdx(i)}
+                >
+                  {/* Glow ring */}
+                  <div
+                    className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: `linear-gradient(135deg, ${step.color1}30, ${step.color2}20)`, filter: 'blur(8px)' }}
+                  />
+                  {/* Icon */}
+                  <div
+                    className="relative w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg transition-transform duration-500 group-hover:scale-110"
+                    style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
+                  >
+                    <StepIcon className="w-7 h-7 text-white" />
                   </div>
-                )}
-
-                <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  {/* Card */}
-                  <div className={`w-full md:w-5/12 ${isLeft ? 'md:text-right' : 'md:text-left'}`}>
-                    <div className="group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-6 transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(124,77,255,0.08)]">
-                      {/* Top gradient line */}
-                      <div className="absolute top-0 left-4 right-4 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `linear-gradient(90deg, ${step.color1}, ${step.color2})` }} />
-
-                      <div className={`flex items-center gap-4 mb-3 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-lg transition-transform duration-500 group-hover:scale-110"
-                          style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
-                        >
-                          <StepIcon className="w-6 h-6 text-white" />
-                        </div>
-                        <div className={isLeft ? 'md:text-right' : 'md:text-left'}>
-                          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: step.color1 }}>{step.stage}</span>
-                          <h3 className="font-poppins font-semibold text-white text-lg">{step.service}</h3>
-                        </div>
-                      </div>
-                      <p className="text-white/40 text-sm leading-relaxed">{step.desc}</p>
-                    </div>
-                  </div>
-
-                  {/* Center node */}
-                  <div className="eco-pulse relative flex items-center justify-center shrink-0 hidden md:flex">
-                    <div className="w-10 h-10 rounded-full border-2 flex items-center justify-center" style={{ borderColor: step.color1, background: `${step.color1}15` }}>
-                      <span className="font-poppins font-bold text-sm" style={{ color: step.color1 }}>{String(i + 1).padStart(2, '0')}</span>
-                    </div>
-                    <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ background: step.color1, animationDuration: '2s' }} />
-                  </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block md:w-5/12" />
+                  {/* Stage */}
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.2em] mb-1" style={{ color: step.color1 }}>{step.stage}</span>
+                  {/* Service */}
+                  <h3 className="font-poppins font-semibold text-white text-sm mb-2">{step.service}</h3>
+                  {/* Description - expands on hover */}
+                  <p className="text-white/35 text-xs leading-relaxed max-h-0 overflow-hidden group-hover:max-h-20 transition-all duration-500">
+                    {step.desc}
+                  </p>
                 </div>
 
-                {/* Connector for desktop */}
+                {/* Arrow connector */}
                 {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-connector hidden md:flex justify-center py-4">
-                    <div className="relative w-[2px] h-12 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/5" />
-                      <div className="absolute top-0 left-0 w-full h-4 rounded-full" style={{ background: step.color1, animation: 'travel-down 2.5s linear infinite', animationDelay: `${i * 0.3}s` }} />
-                    </div>
+                  <div className="eco-arrow relative w-10 h-[2px] mx-1 flex-shrink-0">
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/10" />
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0"
+                      style={{ borderTop: '4px solid transparent', borderBottom: '4px solid transparent', borderLeft: `5px solid ${step.color1}60` }}
+                    />
+                    {/* Traveling dot */}
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
+                      style={{ background: step.color1, animation: 'travel-right 2s linear infinite', animationDelay: `${i * 0.3}s` }}
+                    />
                   </div>
                 )}
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile / Tablet Grid */}
+        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {ecosystemSteps.map((step, i) => {
+            const StepIcon = step.icon;
+            return (
+              <div
+                key={step.stage}
+                className="eco-card group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-5 text-center transition-all duration-500"
+                style={{
+                  borderColor: activeIdx === i ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
+                }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg transition-transform duration-500 group-hover:scale-110"
+                  style={{ background: `linear-gradient(135deg, ${step.color1}, ${step.color2})` }}
+                >
+                  <StepIcon className="w-6 h-6 text-white" />
+                </div>
+                <span className="block text-[9px] font-bold uppercase tracking-[0.15em] mb-1" style={{ color: step.color1 }}>{step.stage}</span>
+                <h3 className="font-poppins font-semibold text-white text-sm">{step.service}</h3>
+                <p className="text-white/35 text-xs leading-relaxed mt-2 line-clamp-3">{step.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Progress indicator */}
+        <div className="flex justify-center gap-2 mt-10">
+          {ecosystemSteps.map((step, i) => (
+            <button
+              key={step.stage}
+              onClick={() => setActiveIdx(i)}
+              className="w-2 h-2 rounded-full transition-all duration-300"
+              style={{
+                background: activeIdx === i ? step.color1 : 'rgba(255,255,255,0.15)',
+                transform: activeIdx === i ? 'scale(1.3)' : 'scale(1)',
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>
