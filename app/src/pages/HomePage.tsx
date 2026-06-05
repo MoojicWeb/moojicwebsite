@@ -791,7 +791,6 @@ function EcosystemSection() {
       const cardsD = el.querySelectorAll('.eco-card-d');
       gsap.from(cardsD, {
         y: 30,
-        opacity: 0,
         duration: 0.6,
         stagger: 0.1,
         ease: 'power3.out',
@@ -800,7 +799,6 @@ function EcosystemSection() {
       const cardsM = el.querySelectorAll('.eco-card-m');
       gsap.from(cardsM, {
         y: 30,
-        opacity: 0,
         duration: 0.6,
         stagger: 0.1,
         ease: 'power3.out',
@@ -852,10 +850,10 @@ function EcosystemSection() {
             return (
               <div key={step.stage} className="flex items-center gap-3">
                 <div
-                  className="eco-card-d group relative w-[190px] rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer"
+                  className="eco-card-d group relative w-[190px] rounded-xl border bg-[#151528] p-4 text-center transition-all duration-500 cursor-pointer"
                   style={{
-                    borderColor: isActive ? `${step.color1}60` : 'rgba(255,255,255,0.15)',
-                    boxShadow: isActive ? `0 0 30px ${step.color1}20, 0 4px 20px rgba(0,0,0,0.5)` : '0 4px 20px rgba(0,0,0,0.5)',
+                    borderColor: isActive ? step.color1 : `${step.color1}35`,
+                    boxShadow: isActive ? `0 0 30px ${step.color1}25, 0 8px 30px rgba(0,0,0,0.5)` : `0 0 0 1px ${step.color1}15, 0 8px 30px rgba(0,0,0,0.5)`,
                   }}
                   onMouseEnter={() => setActiveIdx(i)}
                 >
@@ -894,10 +892,10 @@ function EcosystemSection() {
             return (
               <div
                 key={step.stage}
-                className="eco-card-m group relative rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500"
+                className="eco-card-m group relative rounded-xl border bg-[#151528] p-4 text-center transition-all duration-500"
                 style={{
-                  borderColor: activeIdx === i ? `${step.color1}60` : 'rgba(255,255,255,0.15)',
-                  boxShadow: activeIdx === i ? `0 0 30px ${step.color1}20, 0 4px 20px rgba(0,0,0,0.5)` : '0 4px 20px rgba(0,0,0,0.5)',
+                  borderColor: activeIdx === i ? step.color1 : `${step.color1}35`,
+                  boxShadow: activeIdx === i ? `0 0 30px ${step.color1}25, 0 8px 30px rgba(0,0,0,0.5)` : `0 0 0 1px ${step.color1}15, 0 8px 30px rgba(0,0,0,0.5)`,
                 }}
               >
                 <div
