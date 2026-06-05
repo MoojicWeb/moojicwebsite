@@ -191,12 +191,12 @@ export default function AVHardwarePage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Title — full width, always on top */}
-          <div className="text-center lg:text-left mb-8">
+          <div className="text-center mb-8">
             <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Sound Excellence</p>
             <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-3">
               Audio <span className="gradient-text">Hardware</span> Solutions
             </h2>
-            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] lg:mx-0 mx-auto">
+            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] mx-auto">
               Right speakers, right positions, right sound pressure levels measured and calibrated for your space.
             </p>
           </div>
@@ -231,12 +231,12 @@ export default function AVHardwarePage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Title — full width, always on top */}
-          <div className="text-center lg:text-left mb-8">
+          <div className="text-center mb-8">
             <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
             <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-3">
               Commercial Grade <span className="gradient-text">Displays</span>
             </h2>
-            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] lg:mx-0 mx-auto">
+            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] mx-auto">
               High-quality displays that create brand awareness, engage customers, and drive sales.
             </p>
           </div>
