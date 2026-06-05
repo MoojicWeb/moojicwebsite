@@ -841,7 +841,7 @@ function EcosystemSection() {
         </div>
 
         {/* Horizontal Pipeline - Desktop */}
-        <div className="hidden lg:flex items-stretch justify-center gap-0">
+        <div className="hidden lg:flex flex-wrap justify-center gap-y-6">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
             const isActive = activeIdx === i;
@@ -849,9 +849,9 @@ function EcosystemSection() {
               <div key={step.stage} className="flex items-center">
                 {/* Card */}
                 <div
-                  className="eco-card group relative w-[170px] rounded-xl border border-white/[0.08] bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
+                  className="eco-card group relative w-[180px] rounded-xl border border-white/[0.08] bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
                   style={{
-                    borderColor: isActive ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
+                    borderColor: isActive ? `${step.color1}50` : 'rgba(255,255,255,0.08)',
                     boxShadow: isActive ? `0 0 40px ${step.color1}15` : 'none',
                   }}
                   onMouseEnter={() => setActiveIdx(i)}
@@ -880,7 +880,7 @@ function EcosystemSection() {
 
                 {/* Arrow connector */}
                 {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-arrow relative w-6 h-[2px] mx-1 flex-shrink-0">
+                  <div className="eco-arrow relative w-8 h-[2px] mx-2 flex-shrink-0 self-center">
                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/10" />
                     <div
                       className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0"
