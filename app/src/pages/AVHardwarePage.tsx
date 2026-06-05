@@ -53,7 +53,7 @@ function Hero() {
           Sound & Vision <span className="gradient-text">Engineered</span> For Your Space
         </h1>
         <p className="text-white/45 text-sm sm:text-base max-w-[540px] mx-auto leading-relaxed mb-8">
-          Expert audio-visual hardware recommendations, installation, and maintenance — tailored to your brand and budget.
+          Expert audio-visual hardware recommendations, installation, and maintenance tailored to your brand and budget.
         </p>
         <Link to="/contact" className="inline-flex items-center gap-2 font-poppins text-sm font-semibold uppercase tracking-[0.04em] text-white px-8 py-4 rounded-xl gradient-bg hover:shadow-[0_8px_30px_rgba(233,30,99,0.4)] transition-all">
           Get a Free Consultation <ArrowRight className="w-4 h-4" />
