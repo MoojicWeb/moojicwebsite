@@ -190,18 +190,22 @@ export default function AVHardwarePage() {
       <section ref={audioRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Title — full width, always on top */}
+          <div className="text-center lg:text-left mb-8">
+            <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Sound Excellence</p>
+            <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-3">
+              Audio <span className="gradient-text">Hardware</span> Solutions
+            </h2>
+            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] lg:mx-0 mx-auto">
+              Right speakers, right positions, right sound pressure levels measured and calibrated for your space.
+            </p>
+          </div>
+          {/* Image + Pointers */}
           <div className="flex flex-col lg:flex-row gap-10 items-center">
             <div className="lg:w-1/2">
               <img src="/assets/Audio%20Hardware%20Solutions.png" alt="Audio Hardware" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
             </div>
             <div className="lg:w-1/2">
-              <p className="text-[#7c4dff] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Sound Excellence</p>
-              <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-4">
-                Audio <span className="gradient-text">Hardware</span> Solutions
-              </h2>
-              <p className="text-white/40 text-sm leading-relaxed mb-6">
-                Right speakers, right positions, right sound pressure levels measured and calibrated for your space.
-              </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {audioItems.map((item) => (
                   <div key={item.title} className="av-card group relative rounded-xl border bg-[#12121e] p-4 transition-all duration-500" style={{ borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
@@ -226,18 +230,22 @@ export default function AVHardwarePage() {
       <section ref={displayRef} className="py-16 bg-[#0a0a1a] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Title — full width, always on top */}
+          <div className="text-center lg:text-left mb-8">
+            <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
+            <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-3">
+              Commercial Grade <span className="gradient-text">Displays</span>
+            </h2>
+            <p className="text-white/40 text-sm leading-relaxed max-w-[540px] lg:mx-0 mx-auto">
+              High-quality displays that create brand awareness, engage customers, and drive sales.
+            </p>
+          </div>
+          {/* Image + Pointers */}
           <div className="flex flex-col lg:flex-row-reverse gap-10 items-center">
             <div className="lg:w-1/2">
               <img src="/assets/Commercial%20Display.png" alt="Commercial Displays" className="w-full rounded-2xl border border-white/[0.06] shadow-2xl" />
             </div>
             <div className="lg:w-1/2">
-              <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Visual Impact</p>
-              <h2 className="font-poppins font-bold text-white text-[clamp(1.5rem,3vw,2rem)] leading-tight mb-4">
-                Commercial Grade <span className="gradient-text">Displays</span>
-              </h2>
-              <p className="text-white/40 text-sm leading-relaxed mb-6">
-                High-quality displays that create brand awareness, engage customers, and drive sales.
-              </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {displayItems.map((item) => (
                   <div key={item.title} className="av-card group relative rounded-xl border bg-[#12121e] p-4 transition-all duration-500" style={{ borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
