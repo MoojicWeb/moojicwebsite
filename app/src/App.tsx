@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HomePage from '@/pages/HomePage';
@@ -10,6 +11,21 @@ import BlogPage from '@/pages/BlogPage';
 import IndustriesPage from '@/pages/IndustriesPage';
 import GamesPage from '@/pages/GamesPage';
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.replace('#', ''));
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname, hash]);
+  return null;
+}
+
 function ContactRedirect() {
   if (typeof window !== 'undefined') {
     window.location.href = '/#contact';
@@ -20,6 +36,7 @@ function ContactRedirect() {
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <Navigation />
       <main>
         <Routes>
