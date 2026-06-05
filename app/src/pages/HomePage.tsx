@@ -841,15 +841,15 @@ function EcosystemSection() {
         </div>
 
         {/* Horizontal Pipeline - Desktop */}
-        <div className="hidden lg:flex flex-wrap justify-center gap-y-6">
+        <div className="hidden lg:grid grid-cols-5 gap-3 relative">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
             const isActive = activeIdx === i;
             return (
-              <div key={step.stage} className="flex items-center">
+              <div key={step.stage} className="relative">
                 {/* Card */}
                 <div
-                  className="eco-card group relative w-[180px] rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
+                  className="eco-card group relative rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl h-full flex flex-col justify-center"
                   style={{
                     borderColor: isActive ? `${step.color1}60` : 'rgba(255,255,255,0.12)',
                     boxShadow: isActive ? `0 0 40px ${step.color1}20` : '0 4px 20px rgba(0,0,0,0.4)',
@@ -880,7 +880,7 @@ function EcosystemSection() {
 
                 {/* Arrow connector */}
                 {i < ecosystemSteps.length - 1 && (
-                  <div className="eco-arrow relative w-8 h-[2px] mx-2 flex-shrink-0 self-center">
+                  <div className="eco-arrow absolute top-1/2 -right-1.5 translate-x-1/2 -translate-y-1/2 w-6 h-[2px] z-10">
                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/10" />
                     <div
                       className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0"
