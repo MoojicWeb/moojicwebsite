@@ -117,13 +117,13 @@ function Overview() {
 }
 
 /* ========== AUDIO CARD ========== */
-interface AudioItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string; eqBars: number[] }
+interface AudioItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string }
 
 const audioItems: AudioItem[] = [
-  { icon: Speaker, title: 'Ceiling Speakers', desc: 'Discrete, high-quality overhead speakers for even sound distribution.', color1: '#7c4dff', color2: '#e91e63', eqBars: [20, 50, 35, 70, 45, 80, 30, 60, 40, 75] },
-  { icon: Volume2, title: 'Wall-Mounted Speakers', desc: 'Directional systems for targeted audio zones. Entrances, queues, promos.', color1: '#e91e63', color2: '#ff9800', eqBars: [35, 20, 60, 40, 75, 30, 55, 45, 65, 28] },
-  { icon: Zap, title: 'Professional Amplifiers', desc: 'Commercial-grade amps delivering consistent audio across multiple zones.', color1: '#00bcd4', color2: '#7c4dff', eqBars: [30, 45, 25, 65, 35, 55, 40, 70, 20, 60] },
-  { icon: Mic, title: 'PA Systems', desc: 'Integrated public address for announcements, emergencies & voiceovers.', color1: '#ff9800', color2: '#ffb74d', eqBars: [40, 30, 55, 45, 70, 35, 50, 60, 25, 65] },
+  { icon: Speaker, title: 'Ceiling Speakers', desc: 'Discrete, high-quality overhead speakers for even sound distribution.', color1: '#7c4dff', color2: '#e91e63' },
+  { icon: Volume2, title: 'Wall-Mounted Speakers', desc: 'Directional systems for targeted audio zones. Entrances, queues, promos.', color1: '#e91e63', color2: '#ff9800' },
+  { icon: Zap, title: 'Professional Amplifiers', desc: 'Commercial-grade amps delivering consistent audio across multiple zones.', color1: '#00bcd4', color2: '#7c4dff' },
+  { icon: Mic, title: 'PA Systems', desc: 'Integrated public address for announcements, emergencies & voiceovers.', color1: '#ff9800', color2: '#ffb74d' },
 ];
 
 function AudioCard({ item, index }: { item: AudioItem; index: number }) {
@@ -163,25 +163,19 @@ function AudioCard({ item, index }: { item: AudioItem; index: number }) {
             <p className="text-white/40 text-xs leading-relaxed mt-1">{item.desc}</p>
           </div>
         </div>
-        {/* EQ */}
-        <div className="flex items-end gap-[2px] h-6 px-1">
-          {item.eqBars.map((h, i) => (
-            <div key={i} className="flex-1 rounded-full transition-all duration-500" style={{ height: `${hovered ? h * 1.3 : h * 0.35}%`, background: hovered ? `linear-gradient(180deg, ${item.color1}, ${item.color2})` : `${item.color1}20`, transitionDelay: `${i * 20}ms`, opacity: hovered ? 1 : 0.2, minHeight: '2px' }} />
-          ))}
-        </div>
       </div>
     </div>
   );
 }
 
 /* ========== DISPLAY CARD ========== */
-interface DisplayItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string; eqBars: number[] }
+interface DisplayItem { icon: React.ElementType; title: string; desc: string; color1: string; color2: string }
 
 const displayItems: DisplayItem[] = [
-  { icon: Monitor, title: 'Smart Displays', desc: 'High-brightness commercial displays built for 16/7 or 24/7 operation.', color1: '#e91e63', color2: '#ff9800', eqBars: [25, 55, 20, 70, 30, 50, 65, 35, 60, 40] },
-  { icon: Grid3X3, title: 'Video Walls', desc: 'Seamless multi-panel walls for stunning visual impact in flagship stores.', color1: '#7c4dff', color2: '#00bcd4', eqBars: [45, 25, 60, 35, 75, 40, 55, 30, 70, 45] },
-  { icon: MousePointer, title: 'Interactive Kiosks', desc: 'Touch-enabled displays for wayfinding, browsing, and self-checkout.', color1: '#00bcd4', color2: '#7c4dff', eqBars: [35, 45, 30, 55, 40, 70, 25, 60, 50, 35] },
-  { icon: FileText, title: 'Digital Menu Boards', desc: 'Purpose-built for restaurants & QSRs with dayparting and easy updates.', color1: '#ff9800', color2: '#e91e63', eqBars: [50, 30, 65, 40, 55, 35, 70, 45, 50, 60] },
+  { icon: Monitor, title: 'Smart Displays', desc: 'High-brightness commercial displays built for 16/7 or 24/7 operation.', color1: '#e91e63', color2: '#ff9800' },
+  { icon: Grid3X3, title: 'Video Walls', desc: 'Seamless multi-panel walls for stunning visual impact in flagship stores.', color1: '#7c4dff', color2: '#00bcd4' },
+  { icon: MousePointer, title: 'Interactive Kiosks', desc: 'Touch-enabled displays for wayfinding, browsing, and self-checkout.', color1: '#00bcd4', color2: '#7c4dff' },
+  { icon: FileText, title: 'Digital Menu Boards', desc: 'Purpose-built for restaurants & QSRs with dayparting and easy updates.', color1: '#ff9800', color2: '#e91e63' },
 ];
 
 function DisplayCard({ item, index }: { item: DisplayItem; index: number }) {
@@ -220,11 +214,6 @@ function DisplayCard({ item, index }: { item: DisplayItem; index: number }) {
             <h3 className="font-poppins font-semibold text-sm text-white">{item.title}</h3>
             <p className="text-white/40 text-xs leading-relaxed mt-1">{item.desc}</p>
           </div>
-        </div>
-        <div className="flex items-end gap-[2px] h-6 px-1">
-          {item.eqBars.map((h, i) => (
-            <div key={i} className="flex-1 rounded-full transition-all duration-500" style={{ height: `${hovered ? h * 1.3 : h * 0.35}%`, background: hovered ? `linear-gradient(180deg, ${item.color1}, ${item.color2})` : `${item.color1}20`, transitionDelay: `${i * 20}ms`, opacity: hovered ? 1 : 0.2, minHeight: '2px' }} />
-          ))}
         </div>
       </div>
     </div>
