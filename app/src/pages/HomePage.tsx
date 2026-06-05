@@ -849,10 +849,10 @@ function EcosystemSection() {
               <div key={step.stage} className="flex items-center">
                 {/* Card */}
                 <div
-                  className="eco-card group relative w-[180px] rounded-xl border border-white/[0.08] bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
+                  className="eco-card group relative w-[180px] rounded-xl border bg-[#12121e] p-4 text-center transition-all duration-500 cursor-pointer shadow-xl"
                   style={{
-                    borderColor: isActive ? `${step.color1}50` : 'rgba(255,255,255,0.08)',
-                    boxShadow: isActive ? `0 0 40px ${step.color1}15` : 'none',
+                    borderColor: isActive ? `${step.color1}60` : 'rgba(255,255,255,0.12)',
+                    boxShadow: isActive ? `0 0 40px ${step.color1}20` : '0 4px 20px rgba(0,0,0,0.4)',
                   }}
                   onMouseEnter={() => setActiveIdx(i)}
                 >
@@ -905,9 +905,10 @@ function EcosystemSection() {
             return (
               <div
                 key={step.stage}
-                className="eco-card group relative rounded-2xl border border-white/[0.08] bg-[#12121e] p-5 text-center transition-all duration-500 shadow-xl"
+                className="eco-card group relative rounded-2xl border bg-[#12121e] p-5 text-center transition-all duration-500 shadow-xl"
                 style={{
-                  borderColor: activeIdx === i ? `${step.color1}50` : 'rgba(255,255,255,0.08)',
+                  borderColor: activeIdx === i ? `${step.color1}60` : 'rgba(255,255,255,0.12)',
+                  boxShadow: activeIdx === i ? `0 0 40px ${step.color1}20` : '0 4px 20px rgba(0,0,0,0.4)',
                 }}
               >
                 <div
