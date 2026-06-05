@@ -849,7 +849,7 @@ function EcosystemSection() {
               <div key={step.stage} className="flex items-center">
                 {/* Card */}
                 <div
-                  className="eco-card group relative w-[200px] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-5 text-center transition-all duration-500 cursor-pointer"
+                  className="eco-card group relative w-[200px] rounded-2xl border border-white/[0.08] bg-[#12121e] p-5 text-center transition-all duration-500 cursor-pointer shadow-xl"
                   style={{
                     borderColor: isActive ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
                     boxShadow: isActive ? `0 0 40px ${step.color1}15` : 'none',
@@ -905,9 +905,9 @@ function EcosystemSection() {
             return (
               <div
                 key={step.stage}
-                className="eco-card group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl p-5 text-center transition-all duration-500"
+                className="eco-card group relative rounded-2xl border border-white/[0.08] bg-[#12121e] p-5 text-center transition-all duration-500 shadow-xl"
                 style={{
-                  borderColor: activeIdx === i ? `${step.color1}40` : 'rgba(255,255,255,0.06)',
+                  borderColor: activeIdx === i ? `${step.color1}50` : 'rgba(255,255,255,0.08)',
                 }}
               >
                 <div
