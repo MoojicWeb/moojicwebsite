@@ -869,10 +869,17 @@ function EcosystemSection() {
                   <h3 className="font-poppins font-semibold text-white text-sm">{step.service}</h3>
                 </div>
                 {!isLast && (
-                  <div className="eco-arrow relative w-6 h-[2px] flex-shrink-0 mt-8">
+                  <div className="eco-arrow relative w-6 h-[2px] flex-shrink-0 mt-8 overflow-hidden rounded-full">
                     <div className="absolute inset-0 bg-white/15" />
+                    <div
+                      className="absolute inset-0 w-full"
+                      style={{
+                        background: `linear-gradient(90deg, transparent, ${step.color1}, transparent)`,
+                        animation: 'arrow-sweep 2s linear infinite',
+                        animationDelay: `${i * 0.3}s`,
+                      }}
+                    />
                     <div className="absolute top-1/2 -translate-y-1/2 right-0 w-0 h-0" style={{ borderTop: '3px solid transparent', borderBottom: '3px solid transparent', borderLeft: `4px solid ${step.color1}80` }} />
-                    <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full" style={{ background: step.color1, animation: 'travel-right 2s linear infinite', animationDelay: `${i * 0.3}s` }} />
                   </div>
                 )}
               </div>

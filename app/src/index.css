@@ -387,6 +387,11 @@
   100% { transform: translateY(400%); opacity: 0; }
 }
 
+@keyframes arrow-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
 @keyframes float-particle {
   0% { transform: translateY(0) translateX(0); opacity: 0.05; }
   50% { opacity: 0.15; }
