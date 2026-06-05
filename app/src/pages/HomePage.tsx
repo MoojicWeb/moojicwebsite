@@ -842,15 +842,15 @@ function EcosystemSection() {
         </div>
 
         {/* Desktop Pipeline */}
-        <div className="hidden lg:flex items-start justify-center gap-3">
+        <div className="hidden lg:flex items-stretch justify-center gap-3">
           {ecosystemSteps.map((step, i) => {
             const StepIcon = step.icon;
             const isActive = activeIdx === i;
             const isLast = i === ecosystemSteps.length - 1;
             return (
-              <div key={step.stage} className="flex items-center gap-3">
+              <div key={step.stage} className="flex items-stretch gap-3">
                 <div
-                  className="eco-card-d group relative w-[190px] rounded-xl border bg-[#151528] p-4 text-center transition-all duration-500 cursor-pointer"
+                  className="eco-card-d group relative w-[190px] rounded-xl border bg-[#151528] p-4 text-center transition-all duration-500 cursor-pointer h-full flex flex-col justify-center"
                   style={{
                     borderColor: isActive ? step.color1 : `${step.color1}35`,
                     boxShadow: isActive ? `0 0 30px ${step.color1}25, 0 8px 30px rgba(0,0,0,0.5)` : `0 0 0 1px ${step.color1}15, 0 8px 30px rgba(0,0,0,0.5)`,
