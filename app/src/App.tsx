@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Toaster } from 'sonner';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HomePage from '@/pages/HomePage';
@@ -10,6 +11,7 @@ import AVHardwarePage from '@/pages/AVHardwarePage';
 import BlogPage from '@/pages/BlogPage';
 import IndustriesPage from '@/pages/IndustriesPage';
 import GamesPage from '@/pages/GamesPage';
+import ContactPage from '@/pages/ContactPage';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -23,13 +25,6 @@ function ScrollToTop() {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname, hash]);
-  return null;
-}
-
-function ContactRedirect() {
-  if (typeof window !== 'undefined') {
-    window.location.href = '/#contact';
-  }
   return null;
 }
 
@@ -48,10 +43,11 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
           <Route path="/games" element={<GamesPage />} />
-          <Route path="/contact" element={<ContactRedirect />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
       <Footer />
+      <Toaster theme="dark" position="top-right" richColors />
     </>
   );
 }

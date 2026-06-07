@@ -79,15 +79,27 @@ export function useSamplePlayer() {
 
     const onTime = () => setCurrentTime(audio.currentTime);
     const onMeta = () => setAudioDuration(audio.duration || 0);
+    const onError = (e: Event) => {
+      const err = (e.target as HTMLAudioElement).error;
+      console.error('Audio error:', err?.code, err?.message, 'src:', audio.src);
+    };
+    const onCanPlay = () => console.log('Audio canplay:', audio.src);
+    const onStalled = () => console.warn('Audio stalled:', audio.src);
 
     audio.addEventListener('timeupdate', onTime);
     audio.addEventListener('loadedmetadata', onMeta);
     audio.addEventListener('durationchange', onMeta);
+    audio.addEventListener('error', onError);
+    audio.addEventListener('canplay', onCanPlay);
+    audio.addEventListener('stalled', onStalled);
 
     return () => {
       audio.removeEventListener('timeupdate', onTime);
       audio.removeEventListener('loadedmetadata', onMeta);
       audio.removeEventListener('durationchange', onMeta);
+      audio.removeEventListener('error', onError);
+      audio.removeEventListener('canplay', onCanPlay);
+      audio.removeEventListener('stalled', onStalled);
       audio.pause();
       audio.src = '';
       audioRef.current = null;
@@ -100,11 +112,15 @@ export function useSamplePlayer() {
     if (!audio) return;
 
     if (currentTrack?.file) {
+      console.log('Loading audio:', currentTrack.file);
       audio.src = currentTrack.file;
       audio.currentTime = 0;
       setCurrentTime(0);
       if (isPlaying) {
-        audio.play().catch(() => setIsPlaying(false));
+        audio.play().catch((err) => {
+          console.error('Play error:', err);
+          setIsPlaying(false);
+        });
       }
     } else {
       audio.pause();

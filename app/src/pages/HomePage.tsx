@@ -7,12 +7,13 @@ import {
   Award, Globe, MapPin, TrendingUp,
   Coffee, ShoppingBag, UtensilsCrossed, Scissors, Dumbbell, Hotel, Popcorn,
   Building2, BookOpen, Briefcase, Car,
-  Phone, Mail, MapPinned, ArrowRight, Play, Sparkles,
+  ArrowRight, Play, Sparkles,
   QrCode, Smartphone, Trophy, Gift,
 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import StatCounter from '@/components/StatCounter';
 import IndustryModal from '@/components/IndustryModal';
+import ContactSection from '@/components/ContactSection';
 import { industries } from '@/data/industries';
 import type { Industry } from '@/data/industries';
 
@@ -1889,77 +1890,6 @@ function ResellerCTASection() {
         <Link to="/contact" className="reseller-item inline-flex items-center gap-2 font-poppins text-sm font-semibold uppercase tracking-[0.04em] text-white px-8 py-4 rounded-xl gradient-bg hover:shadow-[0_8px_30px_rgba(233,30,99,0.4)] transition-all">
           Contact Us <ArrowRight className="w-4 h-4" />
         </Link>
-      </div>
-    </section>
-  );
-}
-
-/* ============ CONTACT ============ */
-function ContactSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const ctx = gsap.context(() => {
-      const fields = el.querySelectorAll('.form-field');
-      if (fields.length) {
-        gsap.from(fields, { y: 15, duration: 0.4, stagger: 0.06, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-      }
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section id="contact" ref={sectionRef} className="py-20 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(233,30,99,0.03), transparent)', filter: 'blur(80px)' }} />
-
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
-          <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Contact Us</p>
-          <h2 className="font-poppins font-bold text-white text-[clamp(2rem,4vw,3rem)]">Get In Touch</h2>
-          <p className="text-white/40 text-base mt-3">Ready to transform your in-store experience?</p>
-        </div>
-        <div className="max-w-[800px] mx-auto">
-          <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 sm:p-10 shadow-2xl">
-            <form className="grid sm:grid-cols-2 gap-5" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="Company Name" className="form-field w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:border-[#e91e63] outline-none transition-all" />
-              <input type="text" placeholder="Full Name" className="form-field w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:border-[#e91e63] outline-none transition-all" />
-              <input type="email" placeholder="Email Address" className="form-field w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:border-[#e91e63] outline-none transition-all" />
-              <input type="tel" placeholder="Phone Number" className="form-field w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:border-[#e91e63] outline-none transition-all" />
-              <textarea rows={4} placeholder="Tell us about your requirements..." className="form-field sm:col-span-2 w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:border-[#e91e63] outline-none transition-all resize-none" />
-              <button type="submit" className="form-field sm:col-span-2 w-full font-poppins text-sm font-semibold uppercase tracking-[0.04em] text-white py-4 rounded-xl gradient-bg hover:shadow-[0_8px_30px_rgba(233,30,99,0.4)] transition-all">
-                Send Message
-              </button>
-            </form>
-
-            <div className="mt-10 pt-8 border-t border-white/5 grid sm:grid-cols-3 gap-6">
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-[#e91e63] shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white text-sm font-medium">Phone</p>
-                  <p className="text-white/40 text-xs mt-1">+91-8452999066</p>
-                  <p className="text-white/40 text-xs">+91-9167633544</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-[#e91e63] shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white text-sm font-medium">Email</p>
-                  <p className="text-white/40 text-xs mt-1">info@moojic.com</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPinned className="w-5 h-5 text-[#e91e63] shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white text-sm font-medium">Adonta Mobility Solutions Pvt Ltd</p>
-                  <p className="text-white/40 text-xs mt-1 leading-relaxed">4th Floor – 32, Aditya Villa, Waman Wadi Rd,<br />Sindhi Society, Chembur, Mumbai, Maharashtra 400071</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

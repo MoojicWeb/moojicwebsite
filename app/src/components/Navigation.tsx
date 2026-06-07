@@ -77,6 +77,10 @@ export default function Navigation() {
             <Link to="/sample-player" className={`font-poppins text-[13px] font-semibold uppercase tracking-[0.06em] transition-colors hover:text-[#e91e63] text-white ${location.pathname === '/sample-player' ? 'text-[#e91e63]' : ''}`}>
               AI Playlists
             </Link>
+
+            <Link to="/contact?type=customer-care" className={`font-poppins text-[13px] font-semibold uppercase tracking-[0.06em] transition-colors hover:text-[#e91e63] text-white ${location.pathname === '/contact' && location.search.includes('type=customer-care') ? 'text-[#e91e63]' : ''}`}>
+              Customer Care
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">
@@ -112,6 +116,7 @@ export default function Navigation() {
               <Link to="/industries" className="font-poppins text-xl font-semibold text-white" onClick={() => setMobileOpen(false)}>Industries</Link>
               <Link to="/games" className="font-poppins text-xl font-semibold text-white" onClick={() => setMobileOpen(false)}>Games</Link>
               <Link to="/sample-player" className="font-poppins text-xl font-semibold text-white" onClick={() => setMobileOpen(false)}>AI Playlists</Link>
+              <Link to="/contact?type=customer-care" className="font-poppins text-xl font-semibold text-white" onClick={() => setMobileOpen(false)}>Customer Care</Link>
               <Link to="/contact" className="font-poppins text-xl font-semibold text-white" onClick={() => setMobileOpen(false)}>Contact Us</Link>
             </div>
           </div>
