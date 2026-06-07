@@ -101,27 +101,6 @@ export const playlists: IndustryPlaylist[] = [
     ]
   },
   {
-    id: 'gym',
-    name: 'Gymnasium',
-    description: 'High-energy EDM, hip-hop, and motivational anthems designed to push members through every rep, set, and sprint.',
-    genres: ['EDM', 'Hip-Hop', 'High Energy'],
-    gradient: 'from-green-600 to-lime-400',
-    tracks: [
-      { id: 1, title: 'Power Lift', artist: 'Beast Mode', duration: '3:25' },
-      { id: 2, title: 'Sprint Mode', artist: 'Cardio Kings', duration: '3:42' },
-      { id: 3, title: 'Rep It Out', artist: 'Drop Squad', duration: '3:18' },
-      { id: 4, title: 'Beast Mode', artist: 'Beast Mode', duration: '3:55' },
-      { id: 5, title: 'Iron Pump', artist: 'Cardio Kings', duration: '4:02' },
-      { id: 6, title: 'No Limits', artist: 'Drop Squad', duration: '3:35' },
-      { id: 7, title: 'PR Day', artist: 'Beast Mode', duration: '3:48' },
-      { id: 8, title: 'Sweat Session', artist: 'Cardio Kings', duration: '3:22' },
-      { id: 9, title: 'Gain Train', artist: 'Drop Squad', duration: '4:10' },
-      { id: 10, title: 'Final Set', artist: 'Beast Mode', duration: '3:40' },
-      { id: 11, title: 'Recovery Zone', artist: 'Cardio Kings', duration: '4:05' },
-      { id: 12, title: 'Cool Down', artist: 'Drop Squad', duration: '3:28' },
-    ]
-  },
-  {
     id: 'hotel',
     name: 'Hotel',
     description: 'Sophisticated jazz, classical, and world music that creates a luxurious atmosphere across lobbies, restaurants, and lounge areas.',
@@ -140,27 +119,6 @@ export const playlists: IndustryPlaylist[] = [
       { id: 10, title: 'VIP Suite', artist: 'Luxury Lounge', duration: '4:25' },
       { id: 11, title: 'Business Center', artist: 'World Class', duration: '3:48' },
       { id: 12, title: 'Check Out', artist: 'Elegant Tones', duration: '4:00' },
-    ]
-  },
-  {
-    id: 'cinema',
-    name: 'Cinema',
-    description: 'Epic orchestral and ambient scores that build anticipation in lobbies and create an immersive pre-show experience.',
-    genres: ['Epic', 'Orchestral', 'Ambient'],
-    gradient: 'from-slate-700 to-gray-400',
-    tracks: [
-      { id: 1, title: 'Opening Credits', artist: 'Cinema Score', duration: '4:30' },
-      { id: 2, title: 'Trailer Tease', artist: 'Epic Sounds', duration: '3:45' },
-      { id: 3, title: 'Red Carpet', artist: 'Hollywood Mix', duration: '4:10' },
-      { id: 4, title: 'Popcorn Time', artist: 'Cinema Score', duration: '3:25' },
-      { id: 5, title: 'Coming Soon', artist: 'Epic Sounds', duration: '4:20' },
-      { id: 6, title: 'Feature Presentation', artist: 'Hollywood Mix', duration: '4:40' },
-      { id: 7, title: 'Concession Groove', artist: 'Cinema Score', duration: '3:38' },
-      { id: 8, title: 'Matinee Mood', artist: 'Epic Sounds', duration: '4:05' },
-      { id: 9, title: 'IMAX Energy', artist: 'Hollywood Mix', duration: '4:15' },
-      { id: 10, title: 'Intermission', artist: 'Cinema Score', duration: '3:50' },
-      { id: 11, title: 'Premiere Night', artist: 'Epic Sounds', duration: '4:35' },
-      { id: 12, title: 'End Credits', artist: 'Hollywood Mix', duration: '4:25' },
     ]
   },
   {
@@ -203,48 +161,6 @@ export const playlists: IndustryPlaylist[] = [
       { id: 10, title: 'Sample Stand', artist: 'Grocery Grooves', duration: '3:55' },
       { id: 11, title: 'Express Lane', artist: 'Daily Beats', duration: '3:30' },
       { id: 12, title: 'Bag It Up', artist: 'Soft Sounds', duration: '3:42' },
-    ]
-  },
-  {
-    id: 'bookstore',
-    name: 'Bookstore',
-    description: 'Gentle folk, acoustic instrumentals, and soft classical music that fosters a contemplative atmosphere perfect for browsing.',
-    genres: ['Folk', 'Acoustic', 'Instrumental'],
-    gradient: 'from-emerald-700 to-green-400',
-    tracks: [
-      { id: 1, title: 'Turning Pages', artist: 'Quiet Corner', duration: '3:48' },
-      { id: 2, title: 'Coffee and Books', artist: 'Folk Studio', duration: '4:05' },
-      { id: 3, title: 'Chapter One', artist: 'String Theory', duration: '3:55' },
-      { id: 4, title: 'Reading Nook', artist: 'Quiet Corner', duration: '4:12' },
-      { id: 5, title: 'Bookmark', artist: 'Folk Studio', duration: '3:35' },
-      { id: 6, title: 'Library Hush', artist: 'String Theory', duration: '4:20' },
-      { id: 7, title: 'New Release', artist: 'Quiet Corner', duration: '3:42' },
-      { id: 8, title: 'Author Signing', artist: 'Folk Studio', duration: '4:00' },
-      { id: 9, title: 'Paperback', artist: 'String Theory', duration: '3:50' },
-      { id: 10, title: 'Bestseller', artist: 'Quiet Corner', duration: '4:08' },
-      { id: 11, title: 'Literary Escape', artist: 'Folk Studio', duration: '3:45' },
-      { id: 12, title: 'Final Chapter', artist: 'String Theory', duration: '4:15' },
-    ]
-  },
-  {
-    id: 'workspace',
-    name: 'Work Space',
-    description: 'Ambient electronic, focus beats, and instrumental tracks designed to boost productivity and maintain creative flow.',
-    genres: ['Focus', 'Ambient', 'Electronic'],
-    gradient: 'from-violet-700 to-purple-400',
-    tracks: [
-      { id: 1, title: 'Deep Focus', artist: 'Flow State', duration: '4:15' },
-      { id: 2, title: 'Brain Waves', artist: 'Productivity Lab', duration: '3:50' },
-      { id: 3, title: 'Code Mode', artist: 'Digital Mind', duration: '4:05' },
-      { id: 4, title: 'Deadline Dash', artist: 'Flow State', duration: '3:38' },
-      { id: 5, title: 'Collaboration', artist: 'Productivity Lab', duration: '4:22' },
-      { id: 6, title: 'Sprint Session', artist: 'Digital Mind', duration: '3:45' },
-      { id: 7, title: 'Break Room', artist: 'Flow State', duration: '3:55' },
-      { id: 8, title: 'Meeting Over', artist: 'Productivity Lab', duration: '4:10' },
-      { id: 9, title: 'Creative Block', artist: 'Digital Mind', duration: '4:00' },
-      { id: 10, title: 'Launch Day', artist: 'Flow State', duration: '3:48' },
-      { id: 11, title: 'Standup Beats', artist: 'Productivity Lab', duration: '4:12' },
-      { id: 12, title: 'Log Off', artist: 'Digital Mind', duration: '4:25' },
     ]
   },
   {

@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Volume2, VolumeX,
-  Coffee, ShoppingBag, UtensilsCrossed, Scissors, Dumbbell, Hotel,
-  Popcorn, Building2, BookOpen, Briefcase, Car, Heart, ListMusic,
+  Coffee, ShoppingBag, UtensilsCrossed, Scissors, Hotel,
+  Building2, Car, Heart, ListMusic,
   Sparkles, Wand2, Zap, Crown, Sun, Headphones,
 } from 'lucide-react';
 import { useSamplePlayer, type BrandMood } from '@/hooks/useSamplePlayer';
 
 const industryIcons: Record<string, React.ElementType> = {
   cafe: Coffee, retail: ShoppingBag, restaurant: UtensilsCrossed, salon: Scissors,
-  gym: Dumbbell, hotel: Hotel, cinema: Popcorn, mall: Building2,
-  supermarket: ShoppingBag, bookstore: BookOpen, workspace: Briefcase, automotive: Car,
+  hotel: Hotel, mall: Building2,
+  supermarket: ShoppingBag, automotive: Car,
 };
 
 const brandMoods: { value: BrandMood; label: string; icon: React.ElementType; color: string }[] = [
@@ -31,9 +31,9 @@ const coverGradients = [
 
 const storeVideos: Record<string, string> = {
   cafe: '/assets/video-cafe.mp4', retail: '/assets/video-retail.mp4', restaurant: '/assets/video-restaurant.mp4',
-  salon: '/assets/video-salon.mp4', gym: '/assets/video-gym.mp4', hotel: '/assets/video-hotel.mp4',
-  cinema: '/assets/video-cinema.mp4', mall: '/assets/video-mall.mp4', supermarket: '/assets/video-supermarket.mp4',
-  bookstore: '/assets/video-bookstore.mp4', workspace: '/assets/video-workspace.mp4', automotive: '/assets/video-automotive.mp4',
+  salon: '/assets/video-salon.mp4', hotel: '/assets/video-hotel.mp4',
+  mall: '/assets/video-mall.mp4', supermarket: '/assets/video-supermarket.mp4',
+  automotive: '/assets/video-automotive.mp4',
 };
 
 const moodOverlayColors: Record<string, string> = {
@@ -57,9 +57,9 @@ export default function SamplePlayerPage() {
 
   const storeTypes = [
     { id: 'cafe', name: 'Cafe' }, { id: 'retail', name: 'Retail' }, { id: 'restaurant', name: 'Restaurant' },
-    { id: 'salon', name: 'Salon' }, { id: 'gym', name: 'Gym' }, { id: 'hotel', name: 'Hotel' },
-    { id: 'cinema', name: 'Cinema' }, { id: 'mall', name: 'Mall' }, { id: 'supermarket', name: 'Supermarket' },
-    { id: 'bookstore', name: 'Bookstore' }, { id: 'workspace', name: 'Workspace' }, { id: 'automotive', name: 'Automotive' },
+    { id: 'salon', name: 'Salon' }, { id: 'hotel', name: 'Hotel' },
+    { id: 'mall', name: 'Mall' }, { id: 'supermarket', name: 'Supermarket' },
+    { id: 'automotive', name: 'Automotive' },
   ];
 
   const activeMood = brandMoods.find((m) => m.value === brandMood);
