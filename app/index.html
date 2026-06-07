@@ -11,16 +11,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      (function() {
-        const removeWatermark = function() {
-          var el = document.querySelector('a[href*="kimi.com/agent"]');
-          if (el) el.remove();
-        };
-        document.addEventListener('DOMContentLoaded', removeWatermark);
-        window.addEventListener('load', removeWatermark);
-        setInterval(removeWatermark, 300);
-      })();
-    </script>
   </body>
 </html>

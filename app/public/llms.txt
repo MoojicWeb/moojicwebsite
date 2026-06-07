@@ -1,0 +1,46 @@
+# Moojic
+
+> AI-powered in-store media partner for retail. Moojic builds curated audio (in-store radio), digital signage, and AV hardware that help brands sound, look, and feel exactly the way they were meant to. Founded 2013 in Mumbai; serving 20,000+ locations across 12 countries; trusted by 350+ brands.
+
+Moojic is operated by Adonta Mobility Solutions Pvt Ltd, 4th Floor – 32, Aditya Villa, Waman Wadi Rd, Sindhi Society, Chembur, Mumbai, Maharashtra 400071, India. Contact: +91-8452999066, +91-9167633544, info@moojic.com.
+
+## Services
+
+- [In-Store Radio](https://moojicwebsite.vercel.app/service/in-store-radio): AI-curated playlists shaped by brand identity, audience, and store mood. Features include AI-powered playlists, sonic identity, mood sensing, voice overs, jukebox, and licensing. Deployed across 20,000+ locations.
+- [Digital Signage](https://moojicwebsite.vercel.app/service/digital-signage): Turn every screen into a selling moment. Centrally controlled signage with visual identity, brand content, smart scheduling, real-time updates, and proof of play. Reports up to 400% increase in attention.
+- [AV Hardware](https://moojicwebsite.vercel.app/service/av-hardware): The right hardware, installed and ready to perform. Acoustic design, speaker systems, professional installation, signage displays, and space planning. Reports up to 33% sales lift.
+- [AI Music Curation Sample Player](https://moojicwebsite.vercel.app/sample-player): Interactive demo letting users pick a store type (cafe, retail, etc.) and a brand mood (Relaxed, Energetic, Sophisticated, Upbeat, Chill, Premium) to hear curated playlists.
+
+## Customer Engagement
+
+- Digital Jukebox: Customers scan a QR code, request songs from branded playlists, and hear their request play live in-store. No app required.
+- Interactive Games: Spin the Wheel, scratch cards, Slot Machine — every play ends with a reward to drive repeat visits.
+
+## Industries Served
+
+- [Industries Overview](https://moojicwebsite.vercel.app/industries): Retail, Restaurants, Salon, Cafe, Cinema, Mall, Gym, Hotel, Supermarket, Bookstore, Workspace, Automotive.
+
+## Why Moojic
+
+- One Source Media Partner: Audio, signage, and hardware on one unified platform — no juggling vendors.
+- Robust & Proven Technology: 100% in-house tech, battle-tested across 20,000+ locations.
+- Fastest Support: Issues resolved in under 5 minutes, 24/7 dedicated account management.
+
+## Company
+
+- [About Moojic](https://moojicwebsite.vercel.app/#about): A decade of building Moojic from a single Mumbai store into a global AI-powered media partner.
+- [Blog](https://moojicwebsite.vercel.app/blog): Insights on in-store audio, digital signage, and retail experiences.
+- [Contact](https://moojicwebsite.vercel.app/contact): Phone +91-8452999066 / +91-9167633544, info@moojic.com.
+
+## Milestones
+
+- 2013: Founded in Mumbai
+- 2016: 1,000 stores milestone
+- 2018: Digital Signage launched
+- 2020: 20,000+ global locations
+- 2023: AI-powered engine
+- 2026: Largest in-store radio in India
+
+## Reseller Program
+
+Partnership opportunity for resellers: zero investment, 24/7 support, full platform access. Contact info@moojic.com.
