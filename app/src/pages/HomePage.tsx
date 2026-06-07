@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { blogPosts } from '@/data/blog';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -1784,12 +1785,13 @@ function FeaturedOnSection() {
 function BlogPreviewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const posts = [
-    { title: 'From Boring to Astounding', date: 'Dec 1, 2022', excerpt: 'How the right in-store music transforms customer experience.', image: '/assets/blog_thumb_1.jpg' },
-    { title: 'How In-Store Radio Adds Value', date: 'Dec 2, 2022', excerpt: 'The measurable impact of curated audio on dwell time and sales.', image: '/assets/blog_thumb_2.jpg' },
-    { title: 'The Magic of Digital Signage', date: 'Dec 3, 2022', excerpt: 'What digital signage can do for retail stores.', image: '/assets/blog_thumb_3.jpg' },
-    { title: 'Music and Retail Science', date: 'Dec 5, 2022', excerpt: 'The psychology of sound and its influence on shopping.', image: '/assets/blog_thumb_4.jpg' },
-  ];
+  const posts = blogPosts.map((p) => ({
+    title: p.title,
+    date: p.date,
+    excerpt: p.excerpt,
+    image: p.image,
+    slug: p.slug,
+  }));
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -1812,9 +1814,10 @@ function BlogPreviewSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
           {posts.map((post) => (
-            <article
+            <Link
               key={post.title}
-              className="blog-card group bg-white/[0.02] border border-white/[0.05] rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-500 cursor-pointer"
+              to={`/blog/${post.slug}`}
+              className="blog-card group bg-white/[0.02] border border-white/[0.05] rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-500 block"
             >
               <div className="aspect-[16/10] overflow-hidden relative">
                 <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -1830,7 +1833,7 @@ function BlogPreviewSection() {
                 <h4 className="font-poppins font-semibold text-white text-sm mb-2 line-clamp-2 group-hover:text-[#e91e63] transition-colors">{post.title}</h4>
                 <p className="text-xs text-white/35 line-clamp-2 leading-relaxed">{post.excerpt}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

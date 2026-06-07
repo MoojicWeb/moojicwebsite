@@ -9,6 +9,7 @@ import InStoreRadioPage from '@/pages/InStoreRadioPage';
 import DigitalSignagePage from '@/pages/DigitalSignagePage';
 import AVHardwarePage from '@/pages/AVHardwarePage';
 import BlogPage from '@/pages/BlogPage';
+import BlogPostPage from '@/pages/BlogPostPage';
 import IndustriesPage from '@/pages/IndustriesPage';
 import GamesPage from '@/pages/GamesPage';
 import ContactPage from '@/pages/ContactPage';
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/service/digital-signage" element={<DigitalSignagePage />} />
           <Route path="/service/av-hardware" element={<AVHardwarePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
           <Route path="/games" element={<GamesPage />} />
           <Route path="/contact" element={<ContactPage />} />

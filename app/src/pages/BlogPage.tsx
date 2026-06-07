@@ -2,135 +2,130 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useScrollEntrance } from '@/hooks/useScrollEntrance';
+import { blogPosts } from '@/data/blog';
+import { Calendar, ArrowRight, User } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const posts = [
-  {
-    title: 'The Science Behind Music and Retail',
-    date: 'December 5, 2022',
-    excerpt: 'Understanding the psychology of sound and its profound influence on shopping behavior, customer dwell time, and purchase decisions. Dive into the research that powers Moojic\'s approach to in-store audio.',
-    image: '/assets/blog_thumb_4.jpg',
-    featured: true,
-  },
-  {
-    title: 'From Boring to Astounding',
-    date: 'December 1, 2022',
-    excerpt: 'How the right in-store music transforms customer experience from mundane to memorable. The difference between background noise and brand-defining audio.',
-    image: '/assets/blog_thumb_1.jpg',
-    featured: false,
-  },
-  {
-    title: 'How In-Store Radio Adds Value',
-    date: 'December 2, 2022',
-    excerpt: 'The measurable impact of curated audio on dwell time, customer satisfaction, and sales. Real data from real deployments across 20,000 locations.',
-    image: '/assets/blog_thumb_2.jpg',
-    featured: false,
-  },
-  {
-    title: 'The Magic of Digital Signage',
-    date: 'December 3, 2022',
-    excerpt: 'What digital signage can do for retail stores — the truth about in-store marketing that most brands are missing out on.',
-    image: '/assets/blog_thumb_3.jpg',
-    featured: false,
-  },
-];
+const posts = blogPosts;
 
 export default function BlogPage() {
   const featuredRef = useRef<HTMLDivElement>(null);
-  const { ref: gridRef } = useScrollEntrance();
-  const { ref: newsletterRef } = useScrollEntrance();
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = featuredRef.current;
     if (!el) return;
-    gsap.from(el.querySelector('.feat-image'), { x: -40, opacity: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 80%', once: true } });
-    gsap.from(el.querySelector('.feat-content'), { x: 40, opacity: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 80%', once: true } });
-    return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
+    const ctx = gsap.context(() => {
+      gsap.from(el.querySelector('.feat-image'), { x: -40, opacity: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      gsap.from(el.querySelector('.feat-content'), { x: 40, opacity: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      const cards = el.querySelectorAll('.blog-card');
+      if (cards.length) {
+        gsap.from(cards, { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      }
+    }, el);
+    return () => ctx.revert();
   }, []);
 
   const featured = posts[0];
   const regularPosts = posts.slice(1);
 
   return (
-    <>
+    <div className="bg-[#0a0a1a] min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden bg-[#1a0a3e]">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute inset-0" style={{ animation: 'mesh-blob-1 22s ease-in-out infinite alternate', background: 'radial-gradient(ellipse 50% 40% at 40% 50%, rgba(233,30,99,0.2), transparent)' }} />
+      <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute inset-0" style={{ animation: 'mesh-blob-1 22s ease-in-out infinite alternate', background: 'radial-gradient(ellipse 50% 40% at 40% 50%, rgba(233,30,99,0.25), transparent)' }} />
         </div>
-        <div className="relative z-10 text-center py-24 px-4">
-          <h1 className="font-poppins font-bold text-white text-[clamp(2rem,4vw,3rem)] mb-3">Blogs — Moojic</h1>
-          <p className="text-white/70 text-lg max-w-[560px] mx-auto mb-4">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="relative z-10 text-center py-28 px-4">
+          <p className="text-[#e91e63] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Our Blog</p>
+          <h1 className="font-poppins font-bold text-white text-[clamp(2rem,4vw,3rem)] mb-4">Insights & Stories</h1>
+          <p className="text-white/50 text-base max-w-[560px] mx-auto mb-4">
             Insights on in-store audio, digital signage, and creating unforgettable retail experiences.
           </p>
-          <p className="text-white/50 text-xs">
-            <Link to="/" className="text-white/70 hover:text-white hover:underline transition-colors">Home</Link> / Blog
+          <p className="text-white/30 text-xs">
+            <Link to="/" className="text-white/50 hover:text-white transition-colors">Home</Link>
+            <span className="mx-2">/</span>
+            <span className="text-white/70">Blog</span>
           </p>
         </div>
       </section>
 
-      {/* Blog Grid */}
-      <section className="py-24 bg-[#f8f7fb]">
+      {/* Featured Post */}
+      <section className="py-12">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Featured Post */}
-          <div ref={featuredRef} className="bg-white rounded-2xl overflow-hidden shadow-lg mb-12">
+          <div ref={featuredRef} className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-3xl overflow-hidden hover:border-white/[0.15] transition-all duration-500">
             <div className="flex flex-col lg:flex-row">
-              <div className="lg:w-1/2 feat-image">
-                <img src={featured.image} alt={featured.title} className="w-full h-full min-h-[250px] object-cover" />
+              <div className="lg:w-1/2 feat-image relative overflow-hidden">
+                <img src={featured.image} alt={featured.title} className="w-full h-full min-h-[300px] lg:min-h-[400px] object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1.5 rounded-full gradient-bg text-white text-xs font-semibold">Featured</span>
+                </div>
               </div>
-              <div className="lg:w-1/2 feat-content p-8 flex flex-col justify-center">
-                <span className="inline-block self-start px-3 py-1 rounded-full gradient-bg text-white text-xs font-medium mb-4">Featured</span>
-                <p className="text-xs text-[#9e9eb5] mb-2">{featured.date}</p>
-                <h2 className="font-poppins font-bold text-2xl text-[#1a1a5e] mb-4">{featured.title}</h2>
-                <p className="text-[#6b6b8d] leading-relaxed mb-6">{featured.excerpt}</p>
-                <span className="text-sm text-[#e91e63] font-medium">Read Article →</span>
+              <div className="lg:w-1/2 feat-content p-8 lg:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-3 text-white/40 text-xs mb-4">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {featured.date}
+                  </span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5" />
+                    By Moojic
+                  </span>
+                </div>
+                <h2 className="font-poppins font-bold text-2xl lg:text-3xl text-white mb-4 leading-tight">{featured.title}</h2>
+                <p className="text-white/50 leading-relaxed mb-8">{featured.excerpt}</p>
+                <Link to={`/blog/${featured.slug}`} className="inline-flex items-center gap-2 text-sm text-[#e91e63] font-semibold hover:gap-3 transition-all">
+                  Read Article <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Regular Posts */}
+      {/* Regular Posts Grid */}
+      <section className="py-12 pb-24">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularPosts.map((post) => (
-              <div key={post.title} className="animate-item group bg-white rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(45,27,105,0.08)] hover:shadow-[0_8px_40px_rgba(45,27,105,0.12)] transition-all duration-300">
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-5">
-                  <p className="text-xs text-[#9e9eb5] mb-2">{post.date}</p>
-                  <h3 className="font-poppins font-semibold text-[#1a1a5e] text-base mb-2 line-clamp-2">{post.title}</h3>
-                  <p className="text-sm text-[#6b6b8d] line-clamp-3 mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-[#9e9eb5]">By Moojic</span>
-                    <span className="text-xs text-[#e91e63] font-medium">Read More →</span>
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="blog-card group bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.15] transition-all duration-500 block"
+              >
+                <div className="aspect-[16/10] overflow-hidden relative">
+                  <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="w-9 h-9 rounded-full bg-[#e91e63] flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-white" />
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 text-white/30 text-xs mb-3">
+                    <Calendar className="w-3 h-3" />
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 className="font-poppins font-semibold text-white text-base mb-2 line-clamp-2 group-hover:text-[#e91e63] transition-colors">{post.title}</h3>
+                  <p className="text-sm text-white/40 line-clamp-3 leading-relaxed">{post.excerpt}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Newsletter CTA */}
-      <section ref={newsletterRef} className="py-16 bg-gradient-to-r from-[#e91e63] to-[#ff9800]">
-        <div className="max-w-[600px] mx-auto px-4 text-center">
-          <h3 className="animate-item font-poppins font-semibold text-white text-xl mb-3">Stay in the Loop</h3>
-          <p className="animate-item text-white/85 text-sm mb-6">
-            Get the latest insights on in-store audio, digital signage, and retail innovation delivered to your inbox.
-          </p>
-          <div className="animate-item flex max-w-[480px] mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-l-lg text-sm outline-none"
-            />
-            <button className="px-6 py-3 bg-[#1a0a3e] text-white text-sm font-medium rounded-r-lg hover:bg-[#2d1b69] transition-colors">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }
