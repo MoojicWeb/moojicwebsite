@@ -32,6 +32,10 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Puppeteer browser cache (downloaded per-machine)
+.puppeteer-cache/
+**/.puppeteer-cache/
+
 # Backup files left during edits
 *.bak
 
