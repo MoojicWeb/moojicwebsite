@@ -14,30 +14,8 @@ export default async function handler(req, res) {
   const SENDGRID_TO_EMAIL = process.env.SENDGRID_TO_EMAIL;
   const SENDGRID_FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
 
-  // Diagnostic: log which Sendgrid-prefixed env keys are visible (NOT values).
-  // Removable once the form is working.
-  const sendgridKeysVisible = Object.keys(process.env).filter((k) => k.startsWith('SENDGRID'));
-  console.log('SendGrid env diagnostic:', {
-    visibleKeys: sendgridKeysVisible,
-    hasApiKey: !!SENDGRID_API_KEY,
-    apiKeyLength: SENDGRID_API_KEY ? SENDGRID_API_KEY.length : 0,
-    hasTo: !!SENDGRID_TO_EMAIL,
-    hasFrom: !!SENDGRID_FROM_EMAIL,
-    nodeEnv: process.env.NODE_ENV,
-    vercelEnv: process.env.VERCEL_ENV,
-  });
-
   if (!SENDGRID_API_KEY || !SENDGRID_TO_EMAIL || !SENDGRID_FROM_EMAIL) {
-    return res.status(500).json({
-      error: 'Server email configuration is incomplete.',
-      // Surface which keys are present (not values) so the client can see too.
-      debug: {
-        visibleSendgridKeys: sendgridKeysVisible,
-        hasApiKey: !!SENDGRID_API_KEY,
-        hasTo: !!SENDGRID_TO_EMAIL,
-        hasFrom: !!SENDGRID_FROM_EMAIL,
-      },
-    });
+    return res.status(500).json({ error: 'Server email configuration is incomplete.' });
   }
 
   const subject = type === 'customer-care'
