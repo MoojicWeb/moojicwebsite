@@ -1,5 +1,14 @@
 // Prerender each public route into static HTML using headless Chrome.
 // Run automatically after `vite build` via the postbuild npm script.
+//
+// SKIPPED ON VERCEL: Vercel's build container lacks the system libraries
+// Chromium needs (libnspr4, libnss3, etc.). Run prerender locally before
+// pushing, or migrate to @sparticuz/chromium for cloud-side rendering.
+if (process.env.VERCEL) {
+  console.log('[prerender] skipping on Vercel — build env lacks Chromium system deps');
+  process.exit(0);
+}
+
 import { createServer } from 'node:http';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
