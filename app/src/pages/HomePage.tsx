@@ -1409,7 +1409,17 @@ function AboutSection() {
           {/* LEFT: Image + Timeline */}
           <div className="lg:w-1/2 about-img">
             <div className="relative">
-              <img src="/assets/about_office.jpg" alt="Moojic" className="w-full rounded-3xl shadow-2xl border border-white/5" />
+              <img
+                src="/assets/about_office.webp"
+                srcSet="/assets/about_office-sm.webp 640w, /assets/about_office.webp 1024w"
+                sizes="(min-width: 1024px) 600px, 100vw"
+                alt="Moojic team office in Mumbai"
+                width="1024"
+                height="585"
+                loading="lazy"
+                decoding="async"
+                className="w-full rounded-3xl shadow-2xl border border-white/5"
+              />
 
               {/* Timeline overlay */}
               <div className="absolute -bottom-6 -right-2 sm:right-4 bg-[#151525] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-4 shadow-xl max-w-[240px]">

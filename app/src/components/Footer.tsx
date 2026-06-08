@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
           <div>
             <Link to="/" className="inline-block mb-5">
-              <img src="/logo.png" alt="Moojic" className="h-8 w-auto" />
+              <img src="/logo.webp" alt="Moojic" width="93" height="32" className="h-8 w-auto" />
             </Link>
             <p className="text-white/40 text-sm leading-relaxed mb-6">
               Transforming in-store experiences with intelligent audio and visual solutions. Trusted by 20,000+ locations worldwide.

@@ -41,7 +41,7 @@ export default function Navigation() {
       >
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <img src="/logo.png" alt="Moojic" className="h-8 w-auto" />
+            <img src="/logo.webp" alt="Moojic" width="93" height="32" className="h-8 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -99,7 +99,7 @@ export default function Navigation() {
           <div className="flex flex-col h-full p-6">
             <div className="flex justify-between items-center mb-12">
               <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src="/logo.png" alt="Moojic" className="h-8 w-auto" />
+                <img src="/logo.webp" alt="Moojic" width="93" height="32" className="h-8 w-auto" />
               </Link>
               <button onClick={() => setMobileOpen(false)} className="p-2">
                 <X className="w-6 h-6 text-white" />
