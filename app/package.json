@@ -65,6 +65,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@sparticuz/chromium": "^149.0.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -78,6 +79,7 @@
     "music-metadata": "^11.12.3",
     "postcss": "^8.5.6",
     "puppeteer": "^25.1.0",
+    "puppeteer-core": "^25.1.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",

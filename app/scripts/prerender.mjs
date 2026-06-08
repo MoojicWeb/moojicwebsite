@@ -1,19 +1,34 @@
 // Prerender each public route into static HTML using headless Chrome.
 // Run automatically after `vite build` via the postbuild npm script.
 //
-// SKIPPED ON VERCEL: Vercel's build container lacks the system libraries
-// Chromium needs (libnspr4, libnss3, etc.). Run prerender locally before
-// pushing, or migrate to @sparticuz/chromium for cloud-side rendering.
-if (process.env.VERCEL) {
-  console.log('[prerender] skipping on Vercel — build env lacks Chromium system deps');
-  process.exit(0);
-}
-
+// On Vercel: uses puppeteer-core + @sparticuz/chromium (a Chromium build
+// bundled for serverless environments — no external system libs needed).
+// Locally: uses the full puppeteer package with its bundled Chrome
+// (cached at app/.puppeteer-cache per puppeteer.config.cjs).
 import { createServer } from 'node:http';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import puppeteer from 'puppeteer';
+
+async function getBrowser() {
+  if (process.env.VERCEL) {
+    const [{ default: chromium }, { default: puppeteerCore }] = await Promise.all([
+      import('@sparticuz/chromium'),
+      import('puppeteer-core'),
+    ]);
+    return puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+    });
+  }
+  const { default: puppeteer } = await import('puppeteer');
+  return puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
@@ -85,10 +100,7 @@ const server = createServer(async (req, res) => {
 await new Promise((resolve) => server.listen(PORT, '127.0.0.1', resolve));
 console.log(`[prerender] static server on http://127.0.0.1:${PORT}`);
 
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+const browser = await getBrowser();
 
 let ok = 0;
 let failed = 0;
