@@ -7,6 +7,7 @@ import {
   Sparkles, Wand2, Zap, Crown, Sun, Headphones,
 } from 'lucide-react';
 import { useSamplePlayer, type BrandMood } from '@/hooks/useSamplePlayer';
+import SEO from '@/components/SEO';
 
 const industryIcons: Record<string, React.ElementType> = {
   cafe: Coffee, retail: ShoppingBag, restaurant: UtensilsCrossed, salon: Scissors,
@@ -75,6 +76,12 @@ export default function SamplePlayerPage() {
 
   return (
     <div className="h-[calc(100vh-72px)] mt-[72px] bg-[#0a0a1a] flex flex-col text-white overflow-hidden">
+      <SEO
+        title="AI Curated Sample Player — Try Brand-Tuned Playlists | Moojic"
+        description="Pick your store type and brand mood — relaxed, energetic, sophisticated, upbeat, chill, or premium — and hear AI-curated playlists Moojic builds for retail brands."
+        path="/sample-player"
+        image="/assets/ai_curation_visual.jpg"
+      />
       {/* Top Bar */}
       <div className="flex items-center justify-between px-6 py-3 bg-[#0a0a1a]/80 backdrop-blur-md border-b border-white/5 z-20 shrink-0">
         <div className="flex items-center gap-3">

@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { getBlogPostBySlug } from '@/data/blog';
+import SEO, { JsonLd } from '@/components/SEO';
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -11,9 +12,36 @@ export default function BlogPostPage() {
   }
 
   const paragraphs = post.content?.split('\n\n') || [];
+  const postUrl = `https://moojicwebsite.vercel.app/blog/${post.slug}`;
+  const imageUrl = `https://moojicwebsite.vercel.app${post.image}`;
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt,
+          image: imageUrl,
+          datePublished: post.date,
+          author: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Moojic',
+            logo: { '@type': 'ImageObject', url: 'https://moojicwebsite.vercel.app/logo.png' },
+          },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+          url: postUrl,
+        }}
+      />
       {/* Hero */}
       <section className="relative min-h-[55vh] flex items-end overflow-hidden bg-[#0a0a1a]">
         <div className="absolute inset-0">

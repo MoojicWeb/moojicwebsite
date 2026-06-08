@@ -9,6 +9,7 @@ import {
   Zap, Activity, MapPin,
 } from 'lucide-react';
 import VideoWallVisualizer from '@/components/VideoWallVisualizer';
+import SEO, { JsonLd } from '@/components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -493,6 +494,26 @@ export default function DigitalSignagePage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="Digital Signage — Turn Every Screen into a Selling Moment | Moojic"
+        description="Centralized digital signage with real-time updates, smart scheduling, brand-aligned content, and proof of play. Drive 400% more attention across your retail locations."
+        path="/service/digital-signage"
+        image="/assets/service_signage.jpg"
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          serviceType: 'Digital Signage',
+          name: 'Moojic Digital Signage',
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          areaServed: { '@type': 'Country', name: 'India' },
+          description: 'Centrally controlled digital signage for retail. Visual identity, brand content, smart scheduling, real-time updates, centralized control, and proof of play.',
+          url: 'https://moojicwebsite.vercel.app/service/digital-signage',
+          image: 'https://moojicwebsite.vercel.app/assets/service_signage.jpg',
+          offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+        }}
+      />
       <Hero />
 
       {/* Overview */}

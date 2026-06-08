@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { blogPosts } from '@/data/blog';
 import { Calendar, ArrowRight, User } from 'lucide-react';
+import SEO, { JsonLd } from '@/components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,30 @@ export default function BlogPage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="Blog — Insights on In-Store Audio, Signage & Retail | Moojic"
+        description="Articles on in-store audio, digital signage, AV hardware, and creating unforgettable retail experiences. From the team at Moojic."
+        path="/blog"
+        image={posts[0]?.image}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Blog',
+          name: 'Moojic Blog',
+          url: 'https://moojicwebsite.vercel.app/blog',
+          publisher: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          blogPost: posts.map((p) => ({
+            '@type': 'BlogPosting',
+            headline: p.title,
+            datePublished: p.date,
+            url: `https://moojicwebsite.vercel.app/blog/${p.slug}`,
+            image: `https://moojicwebsite.vercel.app${p.image}`,
+            description: p.excerpt,
+            author: { '@type': 'Organization', name: 'Moojic' },
+          })),
+        }}
+      />
       {/* Hero */}
       <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-50">

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroVideo from '@/components/HeroVideo';
+import SEO, { JsonLd } from '@/components/SEO';
 import {
   Music, Monitor, BarChart3, Cpu, Users, Headphones,
   Shuffle, Lock, RefreshCw, Bell, Check, ArrowRight,
@@ -855,6 +856,26 @@ export default function InStoreRadioPage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="In-Store Radio — AI-Curated Music for Retail | Moojic"
+        description="The music your brand would choose, if it could. AI-powered playlists shaped by your brand identity, audience, and store mood. Trusted across 20,000+ locations."
+        path="/service/in-store-radio"
+        image="/assets/service_radio.jpg"
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          serviceType: 'In-Store Radio',
+          name: 'Moojic In-Store Radio',
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          areaServed: { '@type': 'Country', name: 'India' },
+          description: 'AI-curated in-store radio service. Brand-aligned playlists, mood sensing, sonic identity, voice overs, jukebox, and licensing for retail locations.',
+          url: 'https://moojicwebsite.vercel.app/service/in-store-radio',
+          image: 'https://moojicwebsite.vercel.app/assets/service_radio.jpg',
+          offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+        }}
+      />
       <Hero />
       <IntroSection />
 

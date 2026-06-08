@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroVideo from '@/components/HeroVideo';
+import SEO from '@/components/SEO';
 import {
   Utensils, Scissors, ShoppingBag, Coffee, Film,
   Building2, Dumbbell, Hotel, ShoppingCart, BookOpen,
@@ -226,6 +227,12 @@ export default function IndustriesPage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="Industries We Serve — Retail, Cafe, Salon, Hotel & More | Moojic"
+        description="Every space has a sound. Moojic delivers tailored in-store audio, signage, and AV hardware for retail, restaurants, cafes, salons, gyms, hotels, malls, and more."
+        path="/industries"
+        image="/assets/industry_retail.jpg"
+      />
       <Hero />
 
       {/* Grid */}

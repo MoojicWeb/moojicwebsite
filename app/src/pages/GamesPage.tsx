@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroVideo from '@/components/HeroVideo';
+import SEO from '@/components/SEO';
 import {
   Sparkles, ArrowRight, Trophy, Gift, Target, QrCode,
   Smartphone, Settings, BarChart3,
@@ -119,6 +120,11 @@ export default function GamesPage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="Interactive Games — Spin, Scratch & Slot for Retail | Moojic"
+        description="Because shopping should be fun. Spin the Wheel, scratch a card, or try the Slot Machine. Every play ends with a reward that brings customers back."
+        path="/games"
+      />
       <Hero />
 
       {/* Try It Live */}

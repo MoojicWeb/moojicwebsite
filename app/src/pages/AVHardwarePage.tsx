@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroVideo from '@/components/HeroVideo';
+import SEO, { JsonLd } from '@/components/SEO';
 import {
   Speaker, Zap, Mic, Monitor, Grid3X3, MousePointer, FileText,
   Phone, Mail, ArrowRight, Check, Headphones, Volume2,
@@ -183,6 +184,26 @@ export default function AVHardwarePage() {
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
+      <SEO
+        title="AV Hardware — Pro Audio & Display Installation for Retail | Moojic"
+        description="The right hardware, installed and ready to perform. Acoustic design, speaker systems, professional installation, signage displays, and space planning. Up to 33% sales lift."
+        path="/service/av-hardware"
+        image="/assets/service_hardware.jpg"
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          serviceType: 'AV Hardware Integration',
+          name: 'Moojic AV Hardware',
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          areaServed: { '@type': 'Country', name: 'India' },
+          description: 'Professional AV hardware integration for retail. Acoustic design, speaker systems, professional installation, signage displays, and space planning.',
+          url: 'https://moojicwebsite.vercel.app/service/av-hardware',
+          image: 'https://moojicwebsite.vercel.app/assets/service_hardware.jpg',
+          offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+        }}
+      />
       <Hero />
       <Overview />
 

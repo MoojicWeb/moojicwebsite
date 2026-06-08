@@ -12,6 +12,7 @@ import {
   QrCode, Smartphone, Trophy, Gift,
 } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
+import SEO, { JsonLd } from '@/components/SEO';
 import StatCounter from '@/components/StatCounter';
 import IndustryModal from '@/components/IndustryModal';
 import ContactSection from '@/components/ContactSection';
@@ -1902,6 +1903,83 @@ function ResellerCTASection() {
 export default function HomePage() {
   return (
     <>
+      <SEO
+        title="Moojic — AI-Powered In-Store Audio, Digital Signage & AV Hardware"
+        description="Moojic helps brands sound, look, and feel exactly the way they were meant to. AI-curated in-store radio, digital signage, and AV hardware across 20,000+ locations in 12 countries."
+        path="/"
+      />
+      <JsonLd
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Moojic',
+            legalName: 'Adonta Mobility Solutions Pvt Ltd',
+            url: 'https://moojicwebsite.vercel.app',
+            logo: 'https://moojicwebsite.vercel.app/logo.png',
+            description: 'AI-powered in-store media partner. Curated audio, digital signage, and AV hardware for retail brands.',
+            foundingDate: '2013',
+            sameAs: [
+              'https://www.facebook.com/Moojician/',
+              'https://x.com/MoojicR',
+            ],
+            contactPoint: [
+              {
+                '@type': 'ContactPoint',
+                telephone: '+91-8452999066',
+                contactType: 'customer service',
+                email: 'info@moojic.com',
+                areaServed: 'IN',
+                availableLanguage: ['English', 'Hindi'],
+              },
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            '@id': 'https://moojicwebsite.vercel.app/#localbusiness',
+            name: 'Moojic — Adonta Mobility Solutions Pvt Ltd',
+            image: 'https://moojicwebsite.vercel.app/assets/about_office.jpg',
+            url: 'https://moojicwebsite.vercel.app',
+            telephone: '+91-8452999066',
+            email: 'info@moojic.com',
+            priceRange: '$$',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '4th Floor – 32, Aditya Villa, Waman Wadi Rd, Sindhi Society, Chembur',
+              addressLocality: 'Mumbai',
+              addressRegion: 'Maharashtra',
+              postalCode: '400071',
+              addressCountry: 'IN',
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 19.0598,
+              longitude: 72.9012,
+            },
+            openingHoursSpecification: [
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                opens: '09:00',
+                closes: '19:00',
+              },
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Moojic',
+            url: 'https://moojicwebsite.vercel.app',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: 'https://moojicwebsite.vercel.app/search?q={search_term_string}',
+              'query-input': 'required name=search_term_string',
+            },
+          },
+        ]}
+      />
+
       {/* TEMP: page-wide reseller-style background for visual test — remove to revert */}
       <div
         className="fixed inset-0 -z-10 pointer-events-none"
