@@ -51,6 +51,26 @@ const routes = [
   '/contact',
 ];
 
+// Include all currently published CMS posts in the prerender and sitemap output.
+// A Sanity webhook should trigger a Vercel deployment when posts are published.
+const sanityProjectId = process.env.VITE_SANITY_PROJECT_ID || 'oudkj47x';
+const sanityDataset = process.env.VITE_SANITY_DATASET || 'production';
+let cmsPosts = [];
+try {
+  const query = encodeURIComponent('*[_type == "blogPost" && defined(slug.current) && !(_id in path("drafts.**"))]{"slug": slug.current, publishedAt}');
+  const endpoint = `https://${sanityProjectId}.api.sanity.io/v2025-01-01/data/query/${sanityDataset}?query=${query}`;
+  const response = await fetch(endpoint);
+  if (!response.ok) throw new Error(`Sanity returned ${response.status}`);
+  const payload = await response.json();
+  cmsPosts = Array.isArray(payload.result) ? payload.result : [];
+  for (const post of cmsPosts) {
+    if (post.slug) routes.push(`/blog/${post.slug}`);
+  }
+  console.log(`[prerender] found ${cmsPosts.length} published Sanity posts`);
+} catch (error) {
+  console.warn(`[prerender] could not read Sanity posts; using bundled routes (${error.message})`);
+}
+
 const mime = {
   '.html': 'text/html',
   '.js': 'text/javascript',
@@ -126,6 +146,11 @@ for (const route of routes) {
       },
       { timeout: 25000 }
     );
+    await page.waitForFunction(
+      (routePath) => document.documentElement.dataset.sanitySeoReadyPath === routePath,
+      { timeout: 10000 },
+      route
+    );
     // Small settle for GSAP, intersection observers, etc.
     await new Promise((r) => setTimeout(r, 1500));
 
@@ -148,5 +173,18 @@ for (const route of routes) {
 
 await browser.close();
 server.close();
+
+// Keep the generated sitemap in sync with all post routes included in this build.
+const today = new Date().toISOString().slice(0, 10);
+const cmsDateBySlug = new Map(cmsPosts.map((post) => [post.slug, post.publishedAt || today]));
+const sitemapEntries = [...new Set(routes)].map((route) => {
+  const isBlogPost = route.startsWith('/blog/') && route !== '/blog';
+  const slug = isBlogPost ? route.slice('/blog/'.length) : '';
+  const lastmod = isBlogPost ? (cmsDateBySlug.get(slug) || today) : today;
+  const priority = route === '/' ? '1.0' : route === '/blog' ? '0.8' : isBlogPost ? '0.6' : '0.7';
+  const changefreq = route === '/' || route === '/blog' ? 'weekly' : isBlogPost ? 'monthly' : 'monthly';
+  return `  <url>\n    <loc>https://moojic.com${route}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+}).join('\n');
+await writeFile(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`, 'utf8');
 console.log(`[prerender] complete — ${ok} ok, ${failed} failed`);
 process.exit(failed > 0 ? 1 : 0);

@@ -868,11 +868,11 @@ export default function InStoreRadioPage() {
           '@type': 'Service',
           serviceType: 'In-Store Radio',
           name: 'Moojic In-Store Radio',
-          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojic.com' },
           areaServed: { '@type': 'Country', name: 'India' },
           description: 'AI-curated in-store radio service. Brand-aligned playlists, mood sensing, sonic identity, voice overs, jukebox, and licensing for retail locations.',
-          url: 'https://moojicwebsite.vercel.app/service/in-store-radio',
-          image: 'https://moojicwebsite.vercel.app/assets/service_radio.jpg',
+          url: 'https://moojic.com/service/in-store-radio',
+          image: 'https://moojic.com/assets/service_radio.jpg',
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
         }}
       />

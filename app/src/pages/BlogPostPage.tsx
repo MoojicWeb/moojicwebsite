@@ -1,28 +1,46 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
-import { getBlogPostBySlug } from '@/data/blog';
+import { formatBlogDate, getBlogPostBySlug, loadBlogPostBySlug, type BlogPost } from '@/data/blog';
 import SEO, { JsonLd } from '@/components/SEO';
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getBlogPostBySlug(slug) : undefined;
+  const [post, setPost] = useState<BlogPost | undefined>(() => slug ? getBlogPostBySlug(slug) : undefined);
+  const [loadedSlug, setLoadedSlug] = useState<string>();
 
-  if (!post) {
+  useEffect(() => {
+    let active = true;
+    setPost(slug ? getBlogPostBySlug(slug) : undefined);
+    setLoadedSlug(undefined);
+    if (slug) loadBlogPostBySlug(slug).then((item) => {
+      if (active) {
+        setPost(item);
+        setLoadedSlug(slug);
+      }
+    });
+    return () => { active = false; };
+  }, [slug]);
+
+  if (!post && loadedSlug === slug) {
     return <Navigate to="/blog" replace />;
   }
 
+  if (!post) return <div className="min-h-screen bg-[#0a0a1a]" />;
+
   const paragraphs = post.content?.split('\n\n') || [];
-  const postUrl = `https://moojicwebsite.vercel.app/blog/${post.slug}`;
-  const imageUrl = `https://moojicwebsite.vercel.app${post.image}`;
+  const postUrl = `https://moojic.com/blog/${post.slug}`;
+  const imageUrl = post.image.startsWith('http') ? post.image : `https://moojic.com${post.image}`;
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
       <SEO
-        title={post.title}
-        description={post.excerpt}
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.excerpt}
         path={`/blog/${post.slug}`}
         image={post.image}
         type="article"
+        canonicalUrl={post.canonicalUrl}
       />
       <JsonLd
         data={{
@@ -32,11 +50,11 @@ export default function BlogPostPage() {
           description: post.excerpt,
           image: imageUrl,
           datePublished: post.date,
-          author: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          author: { '@type': 'Organization', name: 'Moojic', url: 'https://moojic.com' },
           publisher: {
             '@type': 'Organization',
             name: 'Moojic',
-            logo: { '@type': 'ImageObject', url: 'https://moojicwebsite.vercel.app/logo.png' },
+            logo: { '@type': 'ImageObject', url: 'https://moojic.com/logo.png' },
           },
           mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
           url: postUrl,
@@ -59,7 +77,7 @@ export default function BlogPostPage() {
           <div className="flex items-center gap-3 text-white/40 text-xs mb-5">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5" />
-              {post.date}
+              {formatBlogDate(post.date)}
             </span>
             <span className="text-white/20">•</span>
             <span className="flex items-center gap-1.5">
@@ -87,12 +105,24 @@ export default function BlogPostPage() {
 
             <div className="space-y-6">
               {paragraphs.map((para, i) => {
+                const inlineImage = para.match(/^!\[(.*?)\]\((https?:\/\/[^\s)]+)\)(?:\n([\s\S]*))?$/);
+                if (inlineImage) {
+                  return (
+                    <figure key={i} className="my-8">
+                      <img src={inlineImage[2]} alt={inlineImage[1]} className="w-full rounded-2xl object-cover" loading="lazy" />
+                      {inlineImage[3] && <figcaption className="mt-3 text-center text-sm text-white/40">{inlineImage[3]}</figcaption>}
+                    </figure>
+                  );
+                }
                 if (para.startsWith('## ')) {
                   return (
                     <h2 key={i} className="font-poppins font-bold text-white text-xl lg:text-2xl mt-10 mb-4 leading-tight">
                       {para.replace('## ', '')}
                     </h2>
                   );
+                }
+                if (para.startsWith('### ')) {
+                  return <h3 key={i} className="font-poppins font-semibold text-white text-lg mt-8 mb-3">{para.replace('### ', '')}</h3>;
                 }
                 if (para.startsWith('- ')) {
                   return (

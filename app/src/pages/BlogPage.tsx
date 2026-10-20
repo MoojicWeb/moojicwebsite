@@ -1,18 +1,23 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { blogPosts } from '@/data/blog';
+import { blogPosts, formatBlogDate, loadBlogPosts, type BlogPost } from '@/data/blog';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import SEO, { JsonLd } from '@/components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const posts = blogPosts;
-
 export default function BlogPage() {
   const featuredRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const [posts, setPosts] = useState<BlogPost[]>(blogPosts);
+
+  useEffect(() => {
+    let active = true;
+    loadBlogPosts().then((items) => { if (active) setPosts(items); });
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     const el = featuredRef.current;
@@ -36,8 +41,10 @@ export default function BlogPage() {
     return () => ctx.revert();
   }, []);
 
-  const featured = posts[0];
-  const regularPosts = posts.slice(1);
+  const featured = posts.find((post) => post.featured) || posts[0];
+  const regularPosts = posts.filter((post) => post.slug !== featured?.slug);
+
+  if (!featured) return <div className="min-h-screen bg-[#0a0a1a]" />;
 
   return (
     <div className="bg-[#0a0a1a] min-h-screen">
@@ -45,21 +52,21 @@ export default function BlogPage() {
         title="Blog — Insights on In-Store Audio, Signage & Retail | Moojic"
         description="Articles on in-store audio, digital signage, AV hardware, and creating unforgettable retail experiences. From the team at Moojic."
         path="/blog"
-        image={posts[0]?.image}
+        image={featured?.image}
       />
       <JsonLd
         data={{
           '@context': 'https://schema.org',
           '@type': 'Blog',
           name: 'Moojic Blog',
-          url: 'https://moojicwebsite.vercel.app/blog',
-          publisher: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          url: 'https://moojic.com/blog',
+          publisher: { '@type': 'Organization', name: 'Moojic', url: 'https://moojic.com' },
           blogPost: posts.map((p) => ({
             '@type': 'BlogPosting',
             headline: p.title,
             datePublished: p.date,
-            url: `https://moojicwebsite.vercel.app/blog/${p.slug}`,
-            image: `https://moojicwebsite.vercel.app${p.image}`,
+            url: `https://moojic.com/blog/${p.slug}`,
+            image: p.image.startsWith('http') ? p.image : `https://moojic.com${p.image}`,
             description: p.excerpt,
             author: { '@type': 'Organization', name: 'Moojic' },
           })),
@@ -100,7 +107,7 @@ export default function BlogPage() {
                 <div className="flex items-center gap-3 text-white/40 text-xs mb-4">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
-                    {featured.date}
+                    {formatBlogDate(featured.date)}
                   </span>
                   <span>•</span>
                   <span className="flex items-center gap-1.5">
@@ -141,7 +148,7 @@ export default function BlogPage() {
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-white/30 text-xs mb-3">
                     <Calendar className="w-3 h-3" />
-                    <span>{post.date}</span>
+                    <span>{formatBlogDate(post.date)}</span>
                   </div>
                   <h3 className="font-poppins font-semibold text-white text-base mb-2 line-clamp-2 group-hover:text-[#e91e63] transition-colors">{post.title}</h3>
                   <p className="text-sm text-white/40 line-clamp-3 leading-relaxed">{post.excerpt}</p>
