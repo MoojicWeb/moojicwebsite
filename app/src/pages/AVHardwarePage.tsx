@@ -196,11 +196,11 @@ export default function AVHardwarePage() {
           '@type': 'Service',
           serviceType: 'AV Hardware Integration',
           name: 'Moojic AV Hardware',
-          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojic.com' },
           areaServed: { '@type': 'Country', name: 'India' },
           description: 'Professional AV hardware integration for retail. Acoustic design, speaker systems, professional installation, signage displays, and space planning.',
-          url: 'https://moojicwebsite.vercel.app/service/av-hardware',
-          image: 'https://moojicwebsite.vercel.app/assets/service_hardware.jpg',
+          url: 'https://moojic.com/service/av-hardware',
+          image: 'https://moojic.com/assets/service_hardware.jpg',
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
         }}
       />

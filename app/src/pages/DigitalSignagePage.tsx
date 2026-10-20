@@ -506,11 +506,11 @@ export default function DigitalSignagePage() {
           '@type': 'Service',
           serviceType: 'Digital Signage',
           name: 'Moojic Digital Signage',
-          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojicwebsite.vercel.app' },
+          provider: { '@type': 'Organization', name: 'Moojic', url: 'https://moojic.com' },
           areaServed: { '@type': 'Country', name: 'India' },
           description: 'Centrally controlled digital signage for retail. Visual identity, brand content, smart scheduling, real-time updates, centralized control, and proof of play.',
-          url: 'https://moojicwebsite.vercel.app/service/digital-signage',
-          image: 'https://moojicwebsite.vercel.app/assets/service_signage.jpg',
+          url: 'https://moojic.com/service/digital-signage',
+          image: 'https://moojic.com/assets/service_signage.jpg',
           offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
         }}
       />

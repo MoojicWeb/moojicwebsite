@@ -19,7 +19,7 @@ export default function ContactPage() {
           '@context': 'https://schema.org',
           '@type': 'ContactPage',
           name: 'Contact Moojic',
-          url: 'https://moojicwebsite.vercel.app/contact',
+          url: 'https://moojic.com/contact',
           mainEntity: {
             '@type': 'Organization',
             name: 'Moojic',

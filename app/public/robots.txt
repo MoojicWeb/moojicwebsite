@@ -1,5 +1,5 @@
 # Moojic - In-Store Audio & Visual Solutions
-# https://moojicwebsite.vercel.app
+# https://moojic.com
 
 User-agent: *
 Allow: /
@@ -35,4 +35,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://moojicwebsite.vercel.app/sitemap.xml
+Sitemap: https://moojic.com/sitemap.xml

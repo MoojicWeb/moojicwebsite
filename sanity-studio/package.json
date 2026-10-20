@@ -1,0 +1,15 @@
+{
+  "name": "moojic-sanity-studio",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "sanity": "latest",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '@/data/blog';
+import { blogPosts, formatBlogDate, loadBlogPosts } from '@/data/blog';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
@@ -1795,14 +1795,13 @@ function FeaturedOnSection() {
 /* ============ BLOG PREVIEW ============ */
 function BlogPreviewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [posts, setPosts] = useState(blogPosts);
 
-  const posts = blogPosts.map((p) => ({
-    title: p.title,
-    date: p.date,
-    excerpt: p.excerpt,
-    image: p.image,
-    slug: p.slug,
-  }));
+  useEffect(() => {
+    let active = true;
+    loadBlogPosts().then((items) => { if (active) setPosts(items.slice(0, 4)); });
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -1840,7 +1839,7 @@ function BlogPreviewSection() {
                 </div>
               </div>
               <div className="p-5">
-                <p className="text-[10px] text-white/30 uppercase tracking-wider mb-2">{post.date}</p>
+                <p className="text-[10px] text-white/30 uppercase tracking-wider mb-2">{formatBlogDate(post.date)}</p>
                 <h4 className="font-poppins font-semibold text-white text-sm mb-2 line-clamp-2 group-hover:text-[#e91e63] transition-colors">{post.title}</h4>
                 <p className="text-xs text-white/35 line-clamp-2 leading-relaxed">{post.excerpt}</p>
               </div>
@@ -1925,8 +1924,8 @@ export default function HomePage() {
             '@type': 'Organization',
             name: 'Moojic',
             legalName: 'Adonta Mobility Solutions Pvt Ltd',
-            url: 'https://moojicwebsite.vercel.app',
-            logo: 'https://moojicwebsite.vercel.app/logo.png',
+            url: 'https://moojic.com',
+            logo: 'https://moojic.com/logo.png',
             description: 'AI-powered in-store media partner. Curated audio, digital signage, and AV hardware for retail brands.',
             foundingDate: '2013',
             sameAs: [
@@ -1947,10 +1946,10 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
-            '@id': 'https://moojicwebsite.vercel.app/#localbusiness',
+            '@id': 'https://moojic.com/#localbusiness',
             name: 'Moojic — Adonta Mobility Solutions Pvt Ltd',
-            image: 'https://moojicwebsite.vercel.app/assets/about_office.jpg',
-            url: 'https://moojicwebsite.vercel.app',
+            image: 'https://moojic.com/assets/about_office.jpg',
+            url: 'https://moojic.com',
             telephone: '+91-8452999066',
             email: 'info@moojic.com',
             priceRange: '$$',
@@ -1980,10 +1979,10 @@ export default function HomePage() {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'Moojic',
-            url: 'https://moojicwebsite.vercel.app',
+            url: 'https://moojic.com',
             potentialAction: {
               '@type': 'SearchAction',
-              target: 'https://moojicwebsite.vercel.app/search?q={search_term_string}',
+              target: 'https://moojic.com/search?q={search_term_string}',
               'query-input': 'required name=search_term_string',
             },
           },

@@ -1,3 +1,5 @@
+import { fetchSanityPosts, fetchSanityPost, type SanityBlogPost } from './sanity';
+
 export interface BlogPost {
   title: string;
   date: string;
@@ -6,6 +8,9 @@ export interface BlogPost {
   featured?: boolean;
   slug: string;
   content?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  canonicalUrl?: string;
 }
 
 function slugify(title: string): string {
@@ -134,4 +139,46 @@ Moojic's integrated approach ensures your digital signage and in-store audio wor
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
+}
+
+export function formatBlogDate(value: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+  return new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+  });
+}
+
+function fromSanity(post: SanityBlogPost): BlogPost {
+  return {
+    title: post.title,
+    date: post.date,
+    excerpt: post.excerpt,
+    image: post.image,
+    featured: post.featured,
+    slug: post.slug,
+    content: post.content,
+    seoTitle: post.seoTitle,
+    seoDescription: post.seoDescription,
+    canonicalUrl: post.canonicalUrl,
+  };
+}
+
+export async function loadBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const cmsPosts = (await fetchSanityPosts()).map(fromSanity);
+    const cmsSlugs = new Set(cmsPosts.map((post) => post.slug));
+    return [...cmsPosts, ...blogPosts.filter((post) => !cmsSlugs.has(post.slug))];
+  } catch {
+    return blogPosts;
+  }
+}
+
+export async function loadBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  try {
+    const cmsPost = await fetchSanityPost(slug);
+    if (cmsPost) return fromSanity(cmsPost);
+  } catch {
+    // Keep existing bundled articles available if Sanity is temporarily unavailable.
+  }
+  return getBlogPostBySlug(slug);
 }

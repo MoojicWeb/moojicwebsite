@@ -6,10 +6,10 @@ Moojic is operated by Adonta Mobility Solutions Pvt Ltd, 4th Floor – 32, Adity
 
 ## Services
 
-- [In-Store Radio](https://moojicwebsite.vercel.app/service/in-store-radio): AI-curated playlists shaped by brand identity, audience, and store mood. Features include AI-powered playlists, sonic identity, mood sensing, voice overs, jukebox, and licensing. Deployed across 20,000+ locations.
-- [Digital Signage](https://moojicwebsite.vercel.app/service/digital-signage): Turn every screen into a selling moment. Centrally controlled signage with visual identity, brand content, smart scheduling, real-time updates, and proof of play. Reports up to 400% increase in attention.
-- [AV Hardware](https://moojicwebsite.vercel.app/service/av-hardware): The right hardware, installed and ready to perform. Acoustic design, speaker systems, professional installation, signage displays, and space planning. Reports up to 33% sales lift.
-- [AI Music Curation Sample Player](https://moojicwebsite.vercel.app/sample-player): Interactive demo letting users pick a store type (cafe, retail, etc.) and a brand mood (Relaxed, Energetic, Sophisticated, Upbeat, Chill, Premium) to hear curated playlists.
+- [In-Store Radio](https://moojic.com/service/in-store-radio): AI-curated playlists shaped by brand identity, audience, and store mood. Features include AI-powered playlists, sonic identity, mood sensing, voice overs, jukebox, and licensing. Deployed across 20,000+ locations.
+- [Digital Signage](https://moojic.com/service/digital-signage): Turn every screen into a selling moment. Centrally controlled signage with visual identity, brand content, smart scheduling, real-time updates, and proof of play. Reports up to 400% increase in attention.
+- [AV Hardware](https://moojic.com/service/av-hardware): The right hardware, installed and ready to perform. Acoustic design, speaker systems, professional installation, signage displays, and space planning. Reports up to 33% sales lift.
+- [AI Music Curation Sample Player](https://moojic.com/sample-player): Interactive demo letting users pick a store type (cafe, retail, etc.) and a brand mood (Relaxed, Energetic, Sophisticated, Upbeat, Chill, Premium) to hear curated playlists.
 
 ## Customer Engagement
 
@@ -18,7 +18,7 @@ Moojic is operated by Adonta Mobility Solutions Pvt Ltd, 4th Floor – 32, Adity
 
 ## Industries Served
 
-- [Industries Overview](https://moojicwebsite.vercel.app/industries): Retail, Restaurants, Salon, Cafe, Cinema, Mall, Gym, Hotel, Supermarket, Bookstore, Workspace, Automotive.
+- [Industries Overview](https://moojic.com/industries): Retail, Restaurants, Salon, Cafe, Cinema, Mall, Gym, Hotel, Supermarket, Bookstore, Workspace, Automotive.
 
 ## Why Moojic
 
@@ -28,9 +28,9 @@ Moojic is operated by Adonta Mobility Solutions Pvt Ltd, 4th Floor – 32, Adity
 
 ## Company
 
-- [About Moojic](https://moojicwebsite.vercel.app/#about): A decade of building Moojic from a single Mumbai store into a global AI-powered media partner.
-- [Blog](https://moojicwebsite.vercel.app/blog): Insights on in-store audio, digital signage, and retail experiences.
-- [Contact](https://moojicwebsite.vercel.app/contact): Phone +91-8452999066 / +91-9167633544, info@moojic.com.
+- [About Moojic](https://moojic.com/#about): A decade of building Moojic from a single Mumbai store into a global AI-powered media partner.
+- [Blog](https://moojic.com/blog): Insights on in-store audio, digital signage, and retail experiences.
+- [Contact](https://moojic.com/contact): Phone +91-8452999066 / +91-9167633544, info@moojic.com.
 
 ## Milestones
 
