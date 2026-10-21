@@ -7,9 +7,6 @@ interface HeroVideoProps {
   onCanPlay?: (e: React.SyntheticEvent<HTMLVideoElement>) => void;
 }
 
-// Hero video that aggressively retries play() to defeat browser autoplay
-// blocking on hard refresh, mid-session navigation, and Safari quirks.
-// Mirrors the working pattern used on the Home hero.
 export default function HeroVideo({ src, className, style, onCanPlay }: HeroVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -20,34 +17,42 @@ export default function HeroVideo({ src, className, style, onCanPlay }: HeroVide
     video.muted = true;
     video.playsInline = true;
     video.loop = true;
-    video.preload = 'auto';
-    video.load();
+    video.preload = 'none';
 
-    const tryPlay = () => {
-      video.play().catch(() => {});
+    let loaded = false;
+    const tryPlay = () => { video.play().catch(() => {}); };
+    const start = () => {
+      if (!loaded) {
+        loaded = true;
+        video.src = src;
+        video.load();
+      }
+      tryPlay();
+    };
+    const onVisibility = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) start();
+        else video.pause();
+      });
     };
 
-    tryPlay();
     video.addEventListener('loadedmetadata', tryPlay);
     video.addEventListener('canplay', tryPlay);
-    video.addEventListener('loadeddata', tryPlay);
-
-    const interval = setInterval(tryPlay, 500);
-    const stopTimeout = setTimeout(() => clearInterval(interval), 10000);
-
-    const onInteract = () => { tryPlay(); };
-    document.addEventListener('click', onInteract, { once: true });
-    document.addEventListener('touchstart', onInteract, { once: true });
-    document.addEventListener('scroll', onInteract, { once: true });
+    const observer = typeof IntersectionObserver === 'undefined'
+      ? undefined
+      : new IntersectionObserver(onVisibility, { threshold: 0.1 });
+    if (observer) observer.observe(video);
+    else start();
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(stopTimeout);
+      observer?.disconnect();
+      video.pause();
       video.removeEventListener('loadedmetadata', tryPlay);
       video.removeEventListener('canplay', tryPlay);
-      video.removeEventListener('loadeddata', tryPlay);
+      video.removeAttribute('src');
+      video.load();
     };
-  }, []);
+  }, [src]);
 
   return (
     <video
@@ -55,13 +60,10 @@ export default function HeroVideo({ src, className, style, onCanPlay }: HeroVide
       muted
       loop
       playsInline
-      autoPlay
-      preload="auto"
+      preload="none"
       onCanPlay={onCanPlay}
       className={className}
       style={style}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    />
   );
 }

@@ -32,7 +32,7 @@ function Hero() {
 
   return (
     <section ref={heroRef} className="relative min-h-[55vh] flex items-center justify-center overflow-hidden bg-[#0a0a1a] mt-[72px]">
-      <HeroVideo src="/assets/games-hero.mp4" className="absolute inset-0 w-full h-full object-cover" />
+      <HeroVideo src="/assets/optimized/games-hero.mp4" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/50 to-[#0a0a1a]/30" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-[60%] h-[60%] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(124,77,255,0.3), transparent 70%)', top: '20%', left: '-10%', animation: 'mesh-blob-1 18s ease-in-out infinite alternate' }} />
