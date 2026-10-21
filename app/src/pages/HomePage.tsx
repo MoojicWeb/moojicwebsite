@@ -14,6 +14,7 @@ import {
 import SectionHeading from '@/components/SectionHeading';
 import SEO, { JsonLd } from '@/components/SEO';
 import StatCounter from '@/components/StatCounter';
+import HeroVideo from '@/components/HeroVideo';
 import IndustryModal from '@/components/IndustryModal';
 import ContactSection from '@/components/ContactSection';
 import { industries } from '@/data/industries';
@@ -30,7 +31,6 @@ const industryIcons: Record<string, React.ElementType> = {
 /* ============ HERO ============ */
 function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -49,47 +49,6 @@ function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  // Aggressive video autoplay with continuous retry
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.preload = 'auto';
-    video.load();
-
-    const tryPlay = () => {
-      video.play().catch(() => {});
-    };
-
-    // Immediate attempt
-    tryPlay();
-
-    // Retry on various events
-    video.addEventListener('loadedmetadata', tryPlay);
-    video.addEventListener('canplay', tryPlay);
-    video.addEventListener('loadeddata', tryPlay);
-
-    // Aggressive interval retry for 10 seconds
-    const interval = setInterval(tryPlay, 500);
-    setTimeout(() => clearInterval(interval), 10000);
-
-    // User interaction fallback
-    const onInteract = () => { tryPlay(); };
-    document.addEventListener('click', onInteract, { once: true });
-    document.addEventListener('touchstart', onInteract, { once: true });
-    document.addEventListener('scroll', onInteract, { once: true });
-
-    return () => {
-      clearInterval(interval);
-      video.removeEventListener('loadedmetadata', tryPlay);
-      video.removeEventListener('canplay', tryPlay);
-      video.removeEventListener('loadeddata', tryPlay);
-    };
-  }, []);
-
   return (
     <section ref={heroRef} className="relative min-h-[calc(100svh-72px)] w-full overflow-hidden bg-[#0a0a1a] mt-[72px]">
       {/* Animated CSS fallback — shows immediately, always visible */}
@@ -100,19 +59,12 @@ function HeroSection() {
       </div>
 
       {/* Video Background — fades in over the fallback when loaded */}
-      <video
-        ref={videoRef}
-        muted
-        loop
-        playsInline
-        preload="auto"
+      <HeroVideo
+        src="/assets/optimized/home-hero.mp4"
         className="absolute inset-0 w-full h-full"
         style={{ zIndex: 2, objectFit: 'cover', opacity: 0, transition: 'opacity 1s ease' }}
-        onLoadedData={(e) => { (e.target as HTMLVideoElement).style.opacity = '1'; }}
-        onCanPlay={(e) => { (e.target as HTMLVideoElement).style.opacity = '1'; }}
-      >
-        <source src="/assets/home-hero.mp4?v=2" type="video/mp4" />
-      </video>
+        onCanPlay={(e) => { (e.currentTarget as HTMLVideoElement).style.opacity = '1'; }}
+      />
 
       {/* Readability overlays */}
       <div className="absolute inset-0" style={{ zIndex: 3, background: 'linear-gradient(to right, rgba(10,10,26,0.55) 0%, rgba(10,10,26,0.2) 50%, rgba(10,10,26,0.05) 100%)' }} />

@@ -32,7 +32,7 @@ function Hero() {
     <section ref={heroRef} className="relative min-h-[55vh] flex items-center justify-center overflow-hidden bg-[#0a0a1a] mt-[72px]">
       {/* Video Background */}
       <HeroVideo
-        src="/assets/av-hero.mp4"
+        src="/assets/optimized/av-hero.mp4"
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 1 }}
       />

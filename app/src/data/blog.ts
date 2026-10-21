@@ -149,11 +149,15 @@ export function formatBlogDate(value: string): string {
 }
 
 function fromSanity(post: SanityBlogPost): BlogPost {
+  const localPost = getBlogPostBySlug(post.slug);
+  const image = post.image === '/assets/ai_curation_visual.jpg'
+    ? localPost?.image || post.image
+    : post.image;
   return {
     title: post.title,
     date: post.date,
     excerpt: post.excerpt,
-    image: post.image,
+    image,
     featured: post.featured,
     slug: post.slug,
     content: post.content,

@@ -61,20 +61,19 @@ export default function BlogPostPage() {
         }}
       />
       {/* Hero */}
-      <section className="relative min-h-[55vh] flex items-end overflow-hidden bg-[#0a0a1a]">
-        <div className="absolute inset-0">
-          <img src={post.image} alt={post.title} className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/70 to-[#0a0a1a]/30" />
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 40% at 30% 60%, rgba(233,30,99,0.12), transparent)' }} />
-        </div>
-
-        <div className="relative z-10 max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-white/50 hover:text-[#e91e63] text-sm mb-6 transition-colors group">
+      <section className="bg-[#0a0a1a] pt-8 sm:pt-10">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/blog#all-articles" className="inline-flex items-center gap-2 text-white/50 hover:text-[#e91e63] text-sm mb-6 transition-colors group">
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
             Back to Blog
           </Link>
 
-          <div className="flex items-center gap-3 text-white/40 text-xs mb-5">
+          <div className="aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.03]">
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          </div>
+
+          <div className="max-w-[800px] mx-auto py-10 sm:py-12">
+            <div className="flex items-center gap-3 text-white/40 text-xs mb-5">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5" />
               {formatBlogDate(post.date)}
@@ -86,9 +85,10 @@ export default function BlogPostPage() {
             </span>
           </div>
 
-          <h1 className="font-poppins font-bold text-white text-[clamp(1.75rem,4vw,3rem)] leading-tight">
-            {post.title}
-          </h1>
+            <h1 className="font-poppins font-bold text-white text-[clamp(1.75rem,4vw,3rem)] leading-tight">
+              {post.title}
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -147,7 +147,7 @@ export default function BlogPostPage() {
 
           {/* Back to Blog footer link */}
           <div className="mt-10 text-center">
-            <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.03] border border-white/[0.08] text-white/60 hover:text-white hover:border-[#e91e63]/30 hover:bg-white/[0.06] text-sm font-medium transition-all">
+            <Link to="/blog#all-articles" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.03] border border-white/[0.08] text-white/60 hover:text-white hover:border-[#e91e63]/30 hover:bg-white/[0.06] text-sm font-medium transition-all">
               <ArrowLeft className="w-4 h-4" />
               All articles
             </Link>

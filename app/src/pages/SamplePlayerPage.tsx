@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useSamplePlayer, type BrandMood } from '@/hooks/useSamplePlayer';
 import SEO from '@/components/SEO';
+import HeroVideo from '@/components/HeroVideo';
 
 const industryIcons: Record<string, React.ElementType> = {
   cafe: Coffee, retail: ShoppingBag, restaurant: UtensilsCrossed, salon: Scissors,
@@ -31,10 +32,10 @@ const coverGradients = [
 ];
 
 const storeVideos: Record<string, string> = {
-  cafe: '/assets/video-cafe.mp4', retail: '/assets/video-retail.mp4', restaurant: '/assets/video-restaurant.mp4',
-  salon: '/assets/video-salon.mp4', hotel: '/assets/video-hotel.mp4',
-  mall: '/assets/video-mall.mp4', supermarket: '/assets/video-supermarket.mp4',
-  automotive: '/assets/video-automotive.mp4',
+  cafe: '/assets/optimized/video-cafe.mp4', retail: '/assets/optimized/video-retail.mp4', restaurant: '/assets/optimized/video-restaurant.mp4',
+  salon: '/assets/optimized/video-salon.mp4', hotel: '/assets/optimized/video-hotel.mp4',
+  mall: '/assets/optimized/video-mall.mp4', supermarket: '/assets/optimized/video-supermarket.mp4',
+  automotive: '/assets/optimized/video-automotive.mp4',
 };
 
 const moodOverlayColors: Record<string, string> = {
@@ -180,14 +181,12 @@ export default function SamplePlayerPage() {
           {/* Hero Banner with Dynamic Store Video + Mood Overlay */}
           <div className="relative h-[280px] overflow-hidden">
             {/* Store Type Background Video */}
-            <video
+            <HeroVideo
               key={storeType}
-              autoPlay muted loop playsInline preload="auto"
+              src={storeVideos[storeType] || storeVideos.cafe}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ zIndex: 1, filter: 'brightness(0.55)' }}
-            >
-              <source src={storeVideos[storeType] || storeVideos.cafe} type="video/mp4" />
-            </video>
+            />
 
             {/* Brand Mood Color Overlay */}
             <div
