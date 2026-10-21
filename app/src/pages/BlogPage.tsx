@@ -20,6 +20,14 @@ export default function BlogPage() {
   }, []);
 
   useEffect(() => {
+    if (window.location.hash !== '#all-articles') return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('all-articles')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
     const el = featuredRef.current;
     if (!el) return;
     const ctx = gsap.context(() => {
@@ -35,7 +43,7 @@ export default function BlogPage() {
     const ctx = gsap.context(() => {
       const cards = el.querySelectorAll('.blog-card');
       if (cards.length) {
-        gsap.from(cards, { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+        gsap.from(cards, { y: 30, duration: 0.6, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
       }
     }, el);
     return () => ctx.revert();
@@ -127,7 +135,7 @@ export default function BlogPage() {
       </section>
 
       {/* Regular Posts Grid */}
-      <section className="py-12 pb-24">
+      <section id="all-articles" className="scroll-mt-24 py-12 pb-24">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularPosts.map((post) => (

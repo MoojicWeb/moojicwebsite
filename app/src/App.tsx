@@ -20,14 +20,17 @@ const ContactPage = lazy(() => import('@/pages/ContactPage'));
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (hash) {
-      const el = document.getElementById(hash.replace('#', ''));
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        return;
+    const frame = window.requestAnimationFrame(() => {
+      if (hash) {
+        const el = document.getElementById(hash.replace('#', ''));
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
       }
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname, hash]);
   return null;
 }
